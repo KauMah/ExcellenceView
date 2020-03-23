@@ -128,6 +128,11 @@ public class ShapeAnimationModel implements ShapeAnimationOperations {
   }
 
   @Override
+  public Shape getShape() {
+    return shape;
+  }
+
+  @Override
   public String toString() {
     if (shape == null) {
       throw new IllegalStateException("shape cannot be null");

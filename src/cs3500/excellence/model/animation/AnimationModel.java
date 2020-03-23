@@ -177,6 +177,41 @@ public class AnimationModel implements AnimationOperations {
   }
 
   @Override
+  public int getEndX() {
+    return endX;
+  }
+
+  @Override
+  public int getEndY() {
+    return endY;
+  }
+
+  @Override
+  public int getEndHeight() {
+    return endHeight;
+  }
+
+  @Override
+  public int getEndWidth() {
+    return endWidth;
+  }
+
+  @Override
+  public int getEndRed() {
+    return endRed;
+  }
+
+  @Override
+  public int getEndGreen() {
+    return endGreen;
+  }
+
+  @Override
+  public int getEndBlue() {
+    return endBlue;
+  }
+
+  @Override
   public String toString() {
     return startTick + " " + startX + " " + startY
         + " " + startWidth + " " + startHeight + " " + startRed + " " + startGreen + " "

@@ -13,6 +13,8 @@ import java.util.Objects;
 public class ExcellenceAnimationModel implements ExcellenceAnimationOperations {
 
   private final List<ShapeAnimationOperations> shapeAnimations;
+  //tempo in seconds
+  private int tempo;
 
   /**
    * Public constructor for the ExcellenceAnimationModel. Creates an empty list to hold the shape
@@ -35,6 +37,16 @@ public class ExcellenceAnimationModel implements ExcellenceAnimationOperations {
   @Override
   public List<ShapeAnimationOperations> getShapeAnimations() {
     return List.copyOf(shapeAnimations);
+  }
+
+  //new
+  public void setTempo(int tempo) {
+    this.tempo = tempo;
+  }
+
+  //new
+  public int getTempo() {
+    return tempo;
   }
 
   @Override

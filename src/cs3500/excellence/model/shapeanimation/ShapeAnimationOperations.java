@@ -57,4 +57,7 @@ public interface ShapeAnimationOperations extends AnimationState {
    */
   void moveAtCurrentTick(int currentTick);
 
+  //new
+  Shape getShape();
+
 }

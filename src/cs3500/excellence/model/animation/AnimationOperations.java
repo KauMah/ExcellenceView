@@ -124,4 +124,23 @@ public interface AnimationOperations {
    * @return starting height.
    */
   int getHeight();
+
+  //new
+  int getEndX();
+
+  //new
+  int getEndY();
+
+  //new
+  int getEndHeight();
+
+  //new
+  int getEndWidth();
+
+  //new
+  int getEndRed();
+
+  int getEndGreen();
+
+  int getEndBlue();
 }

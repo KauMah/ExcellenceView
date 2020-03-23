@@ -107,6 +107,10 @@ public class Shape {
     this.position = new Point((int) position.getX() + x, (int) position.getY() + y);
   }
 
+  public shapeType getType() {
+    return type;
+  }
+
   @Override
   public int hashCode() {
     return super.hashCode();
