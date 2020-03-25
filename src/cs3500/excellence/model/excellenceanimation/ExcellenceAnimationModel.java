@@ -1,5 +1,7 @@
 package cs3500.excellence.model.excellenceanimation;
 
+import cs3500.animator.util.AnimationBuilder;
+import cs3500.excellence.model.shapeanimation.Shape.shapeType;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationModel;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ import java.util.Objects;
 /**
  * A model to represent complex animations consisting of multiple animated shapes.
  */
-public class ExcellenceAnimationModel implements ExcellenceAnimationOperations {
+public final class ExcellenceAnimationModel implements ExcellenceAnimationOperations {
 
   private final List<ShapeAnimationOperations> shapeAnimations;
   //tempo in seconds
@@ -111,6 +113,38 @@ public class ExcellenceAnimationModel implements ExcellenceAnimationOperations {
   public void animationAtCurrentTick(int tick) {
     for (ShapeAnimationOperations i : shapeAnimations) {
       i.moveAtCurrentTick(tick);
+    }
+  }
+
+  public final class Builder implements AnimationBuilder<ExcellenceAnimationOperations> {
+
+    @Override
+    public ExcellenceAnimationOperations build() {
+      return null;
+    }
+
+    @Override
+    public AnimationBuilder<ExcellenceAnimationOperations> setBounds(int x, int y, int width,
+        int height) {
+      return null;
+    }
+
+    @Override
+    public AnimationBuilder<ExcellenceAnimationOperations> declareShape(String name, String type) {
+      return null;
+    }
+
+    @Override
+    public AnimationBuilder<ExcellenceAnimationOperations> addMotion(String name, int t1, int x1,
+        int y1, int w1, int h1, int r1, int g1, int b1, int t2, int x2, int y2, int w2, int h2,
+        int r2, int g2, int b2) {
+      return null;
+    }
+
+    @Override
+    public AnimationBuilder<ExcellenceAnimationOperations> addKeyframe(String name, int t, int x,
+        int y, int w, int h, int r, int g, int b) {
+      return null;
     }
   }
 }

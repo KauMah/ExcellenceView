@@ -2,12 +2,10 @@ package cs3500.animator.view;
 
 import cs3500.excellence.model.animation.AnimationOperations;
 import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationModel;
-import cs3500.excellence.model.shapeanimation.Shape.shapeType;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
-import java.util.ArrayList;
 import java.util.List;
 
-public class SvgAnimationView implements animator.view.SvgAnimationViewOperations {
+public class SvgAnimationView {
   private List<ShapeAnimationOperations> animationList;
   private List<AnimationOperations> shapeOps;
   private int tempo;
