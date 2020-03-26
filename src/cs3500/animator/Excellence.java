@@ -36,5 +36,7 @@ public class Excellence {
     if(!inProvided || !viewProvided) {
       throw new IllegalArgumentException("Have to provide the command line arguments dummy");
     }
+
+
   }
 }

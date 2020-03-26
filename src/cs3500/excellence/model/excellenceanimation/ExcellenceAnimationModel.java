@@ -120,7 +120,7 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
 
     @Override
     public ExcellenceAnimationOperations build() {
-      return null;
+      return new ExcellenceAnimationModel();
     }
 
     @Override
