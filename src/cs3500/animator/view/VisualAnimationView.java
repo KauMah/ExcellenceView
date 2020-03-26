@@ -7,29 +7,37 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
-public class VisualAnimationView extends JFrame implements
-    animator.view.AnimationView {
-    private AnimationPanel panel;
-    private List<Shape> shapes;
+/**
+ * Class representing the visual animation view for the animation.
+ */
+public class VisualAnimationView extends JFrame {
 
-    public VisualAnimationView(Double tempo, List<Shape> shapes) {
-      super();
+  private AnimationPanel panel;
+  private List<Shape> shapes;
 
-      this.shapes = shapes;
-      this.setTitle("Animation");
-      this.setSize(700, 700);
-      this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+  /**
+   * Public constructor for the visual animation view.
+   * @param tempo tempo of the animation.
+   * @param shapes List of shapes to be animated.
+   */
+  public VisualAnimationView(Double tempo, List<Shape> shapes) {
+    super();
 
-      panel = new AnimationPanel(shapes);
-      panel.setPreferredSize(new Dimension(700, 700));
+    this.shapes = shapes;
+    this.setTitle("Animation");
+    this.setSize(700, 700);
+    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-      JScrollPane scrollPane = new JScrollPane(panel);
-      scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-      scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-      scrollPane.setBounds(50, 30, 300, 50);
+    panel = new AnimationPanel(shapes);
+    panel.setPreferredSize(new Dimension(700, 700));
 
-      this.add(scrollPane, BorderLayout.CENTER);
+    JScrollPane scrollPane = new JScrollPane(panel);
+    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+    scrollPane.setBounds(50, 30, 300, 50);
 
-      this.pack();
-    }
+    this.add(scrollPane, BorderLayout.CENTER);
+
+    this.pack();
+  }
 }

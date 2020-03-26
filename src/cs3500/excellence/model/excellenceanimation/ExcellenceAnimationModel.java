@@ -1,7 +1,6 @@
 package cs3500.excellence.model.excellenceanimation;
 
 import cs3500.animator.util.AnimationBuilder;
-import cs3500.excellence.model.shapeanimation.Shape.shapeType;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationModel;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
 import java.util.ArrayList;
@@ -42,13 +41,13 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
   }
 
   //new
-  public void setTempo(int tempo) {
-    this.tempo = tempo;
+  public int getTempo() {
+    return tempo;
   }
 
   //new
-  public int getTempo() {
-    return tempo;
+  public void setTempo(int tempo) {
+    this.tempo = tempo;
   }
 
   @Override

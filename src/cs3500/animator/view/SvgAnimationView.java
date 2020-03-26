@@ -5,12 +5,21 @@ import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationModel;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
 import java.util.List;
 
+/**
+ * View for the svg animation.
+ */
 public class SvgAnimationView {
+
   private List<ShapeAnimationOperations> animationList;
   private List<AnimationOperations> shapeOps;
   private int tempo;
 
-  public SvgAnimationView (ExcellenceAnimationModel model) {
+  /**
+   * Public constructor for the SVG animation that takes the modeel as a parameter.
+   *
+   * @param model Model used to get the animation list and them tempo.
+   */
+  public SvgAnimationView(ExcellenceAnimationModel model) {
     animationList = model.getShapeAnimations();
     tempo = model.getTempo();
   }
@@ -19,12 +28,12 @@ public class SvgAnimationView {
   public String toString() {
     String out = "<svg width=\"700\" height=\"500\" version=\"1.1\"\nxmlns=\"http://www.w3.org/2000/svg\">";
     out += "\n";
-    for (ShapeAnimationOperations a: animationList) {
-      switch(a.getShape().getType()) {
-        case RECTANGLE :
+    for (ShapeAnimationOperations a : animationList) {
+      switch (a.getShape().getType()) {
+        case RECTANGLE:
           out += "<rect>\n";
           List<AnimationOperations> rectAnimations = a.getAnimations();
-          for(AnimationOperations b: rectAnimations) {
+          for (AnimationOperations b : rectAnimations) {
             out += "<animate id=\"";
             out += a.getObjectId() + "\" ";
             out += "x=\"";
@@ -44,32 +53,32 @@ public class SvgAnimationView {
             //tempo is in ticks/sec so we take the inverse an multiply by tick times 1000 to
             // get start time in ms
             out += "<animate attributeType=\"xml\" begin=\"";
-            out += "base.begin+" + ((b.getStartTick() * (1/tempo)) * 1000) + "ms\"";
-            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1/tempo) * 1000) + "ms\"";
+            out += "base.begin+" + ((b.getStartTick() * (1 / tempo)) * 1000) + "ms\"";
+            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1 / tempo) * 1000) + "ms\"";
             out += "attributeName=\"x\" ";
             out += "from=\"" + b.getX() + "\"";
             out += "to=\"" + b.getEndX() + "\"";
             out += "fill=\"freeze\"/> \n";
 
             out += "<animate attributeType=\"xml\" begin=\"";
-            out += "base.begin+" + ((b.getStartTick() * (1/tempo)) * 1000) + "ms\"";
-            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1/tempo) * 1000) + "ms\"";
+            out += "base.begin+" + ((b.getStartTick() * (1 / tempo)) * 1000) + "ms\"";
+            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1 / tempo) * 1000) + "ms\"";
             out += "attributeName\"y\" ";
             out += "from=\"" + b.getY() + "\"";
             out += "to=\"" + b.getEndY() + "\"";
             out += "fill=\"freeze\"/> \n";
 
             out += "<animate attributeType=\"xml\" begin=\"";
-            out += "base.begin+" + ((b.getStartTick() * (1/tempo)) * 1000) + "ms\"";
-            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1/tempo) * 1000) + "ms\"";
+            out += "base.begin+" + ((b.getStartTick() * (1 / tempo)) * 1000) + "ms\"";
+            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1 / tempo) * 1000) + "ms\"";
             out += "attributeName\"height\" ";
             out += "from=\"" + b.getHeight() + "\"";
             out += "to=\"" + b.getEndHeight() + "\"";
             out += "fill=\"freeze\"/> \n";
 
             out += "<animate attributeType=\"xml\" begin=\"";
-            out += "base.begin+" + ((b.getStartTick() * (1/tempo)) * 1000) + "ms\"";
-            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1/tempo) * 1000) + "ms\"";
+            out += "base.begin+" + ((b.getStartTick() * (1 / tempo)) * 1000) + "ms\"";
+            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1 / tempo) * 1000) + "ms\"";
             out += "attributeName\"width\" ";
             out += "from=\"" + b.getWidth() + "\"";
             out += "to=\"" + b.getEndWidth() + "\"";
@@ -77,8 +86,8 @@ public class SvgAnimationView {
 
             //not too sure abot changing color
             out += "<animate attributeType=\"xml\" begin=\"";
-            out += "base.begin+" + ((b.getStartTick() * (1/tempo)) * 1000) + "ms\"";
-            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1/tempo) * 1000) + "ms\"";
+            out += "base.begin+" + ((b.getStartTick() * (1 / tempo)) * 1000) + "ms\"";
+            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1 / tempo) * 1000) + "ms\"";
             out += "attributeName\"fill\" ";
             out += "from=\"rgb(";
             out += b.getRed() + ",";
@@ -95,7 +104,7 @@ public class SvgAnimationView {
         case OVAL:
           out += "<ellipse>\n";
           List<AnimationOperations> ellipseAnimations = a.getAnimations();
-          for(AnimationOperations b: ellipseAnimations) {
+          for (AnimationOperations b : ellipseAnimations) {
             out += "<animate id=\"";
             out += a.getObjectId() + "\" ";
             out += "cx=\"";
@@ -113,32 +122,32 @@ public class SvgAnimationView {
             out += "visibility=\"visible\" \n";
 
             out += "<animate attributeType=\"xml\" begin=\"";
-            out += "base.begin+" + ((b.getStartTick() * (1/tempo)) * 1000) + "ms\"";
-            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1/tempo) * 1000) + "ms\"";
+            out += "base.begin+" + ((b.getStartTick() * (1 / tempo)) * 1000) + "ms\"";
+            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1 / tempo) * 1000) + "ms\"";
             out += "attributeName=\"cx\" ";
             out += "from=\"" + b.getX() + "\"";
             out += "to=\"" + b.getEndX() + "\"";
             out += "fill=\"freeze\"/> \n";
 
             out += "<animate attributeType=\"xml\" begin=\"";
-            out += "base.begin+" + ((b.getStartTick() * (1/tempo)) * 1000) + "ms\"";
-            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1/tempo) * 1000) + "ms\"";
+            out += "base.begin+" + ((b.getStartTick() * (1 / tempo)) * 1000) + "ms\"";
+            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1 / tempo) * 1000) + "ms\"";
             out += "attributeName=\"cy\" ";
             out += "from=\"" + b.getY() + "\"";
             out += "to=\"" + b.getEndY() + "\"";
             out += "fill=\"freeze\"/> \n";
 
             out += "<animate attributeType=\"xml\" begin=\"";
-            out += "base.begin+" + ((b.getStartTick() * (1/tempo)) * 1000) + "ms\"";
-            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1/tempo) * 1000) + "ms\"";
+            out += "base.begin+" + ((b.getStartTick() * (1 / tempo)) * 1000) + "ms\"";
+            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1 / tempo) * 1000) + "ms\"";
             out += "attributeName=\"rx\" ";
             out += "from=\"" + b.getWidth() + "\"";
             out += "to=\"" + b.getEndWidth() + "\"";
             out += "fill=\"freeze\"/> \n";
 
             out += "<animate attributeType=\"xml\" begin=\"";
-            out += "base.begin+" + ((b.getStartTick() * (1/tempo)) * 1000) + "ms\"";
-            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1/tempo) * 1000) + "ms\"";
+            out += "base.begin+" + ((b.getStartTick() * (1 / tempo)) * 1000) + "ms\"";
+            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1 / tempo) * 1000) + "ms\"";
             out += "attributeName=\"ry\" ";
             out += "from=\"" + b.getHeight() + "\"";
             out += "to=\"" + b.getEndHeight() + "\"";
@@ -146,8 +155,8 @@ public class SvgAnimationView {
 
             //not too sure abot changing color
             out += "<animate attributeType=\"xml\" begin=\"";
-            out += "base.begin+" + ((b.getStartTick() * (1/tempo)) * 1000) + "ms\"";
-            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1/tempo) * 1000) + "ms\"";
+            out += "base.begin+" + ((b.getStartTick() * (1 / tempo)) * 1000) + "ms\"";
+            out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1 / tempo) * 1000) + "ms\"";
             out += "attributeName\"fill\" ";
             out += "from=\"rgb(";
             out += b.getRed() + ",";
