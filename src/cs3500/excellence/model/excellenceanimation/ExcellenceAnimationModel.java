@@ -1,6 +1,7 @@
 package cs3500.excellence.model.excellenceanimation;
 
 import cs3500.animator.util.AnimationBuilder;
+import cs3500.excellence.model.animation.AnimationOperations;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationModel;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
 import java.util.ArrayList;
@@ -116,6 +117,7 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
   }
 
   public final class Builder implements AnimationBuilder<ExcellenceAnimationOperations> {
+    AnimationOperations out;
 
     @Override
     public ExcellenceAnimationOperations build() {
@@ -125,6 +127,7 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
     @Override
     public AnimationBuilder<ExcellenceAnimationOperations> setBounds(int x, int y, int width,
         int height) {
+
       return null;
     }
 

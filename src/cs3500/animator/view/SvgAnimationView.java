@@ -153,7 +153,7 @@ public class SvgAnimationView {
             out += "to=\"" + b.getEndHeight() + "\"";
             out += "fill=\"freeze\"/> \n";
 
-            //not too sure abot changing color
+            //not too sure about changing color
             out += "<animate attributeType=\"xml\" begin=\"";
             out += "base.begin+" + ((b.getStartTick() * (1 / tempo)) * 1000) + "ms\"";
             out += "dur=\"" + ((b.getEndTick() - b.getStartTick()) * (1 / tempo) * 1000) + "ms\"";
