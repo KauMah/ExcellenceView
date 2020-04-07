@@ -143,4 +143,8 @@ public interface AnimationOperations {
   int getEndGreen();
 
   int getEndBlue();
+
+  void setStartTime(int startTime);
+
+  void setEndTie(int endTime);
 }

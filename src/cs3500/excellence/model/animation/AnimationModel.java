@@ -9,8 +9,8 @@ public class AnimationModel implements AnimationOperations {
 
   private final String objectId;
 
-  private final int startTick;
-  private final int endTick;
+  private int startTick;
+  private int endTick;
 
   private final int startX;
   private final int endX;
@@ -209,6 +209,16 @@ public class AnimationModel implements AnimationOperations {
   @Override
   public int getEndBlue() {
     return endBlue;
+  }
+
+  @Override
+  public void setStartTime(int startTime) {
+    this.startTick = startTime;
+  }
+
+  @Override
+  public void setEndTie(int endTime) {
+    this.endTick = endTime;
   }
 
   @Override

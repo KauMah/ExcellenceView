@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -77,7 +78,7 @@ public class ShapeAnimationModel implements ShapeAnimationOperations {
 
   @Override
   public List<AnimationOperations> getAnimations() {
-    return animationList;
+    return List.copyOf(animationList);
   }
 
   @Override
@@ -130,6 +131,44 @@ public class ShapeAnimationModel implements ShapeAnimationOperations {
   @Override
   public Shape getShape() {
     return shape;
+  }
+
+  @Override
+  public void addKeystroke(int keyframeIndex, int startX, int endX,
+      int startY, int endY,
+      int startWidth, int endWidth, int startHeight, int endHeight, int startRed, int endRed,
+      int startGreen, int endGreen, int startBlue, int endBlue) {
+    List<AnimationOperations> animations = getAnimations();
+    int start = animations.get(keyframeIndex).getStartTick();
+    int end = animations.get(keyframeIndex).getEndTick();
+    if(keyframeIndex == 0) {
+      for (AnimationOperations a : animations) {
+        int startA = a.getStartTick();
+        int endA = a.getEndTick();
+        a.setStartTime(startA + 20);
+        a.setEndTie(endA + 20);
+      }
+    } else if (keyframeIndex == animations.size()) {
+      int time = animations.get(animations.size() - 1).getEndTick();
+      addAnimation(time, time + 20, startX, endX, startY, endY, startWidth, endWidth,
+          startHeight, endHeight, startRed, endRed, startGreen, endGreen, startBlue, endBlue);
+    } else {
+      animations.get(keyframeIndex).setEndTie(start + ((end-start) / 2));
+      addAnimation((start + ((end-start) / 2)), end, startX, endX, startY, endY, startWidth, endWidth,
+          startHeight, endHeight, startRed, endRed, startGreen, endGreen, startBlue, endBlue);
+    }
+  }
+
+  @Override
+  public void deleteKeystroke(int keyframeIndex) {
+    List<AnimationOperations> animations = getAnimations();
+    animationList.remove(keyframeIndex);
+    animationList.remove(keyframeIndex - 1);
+    AnimationOperations a = animations.get(keyframeIndex - 1);
+    AnimationOperations a1 = animations.get(keyframeIndex);
+    addAnimation(a.getStartTick(), a1.getEndTick(), a.getX(), a1.getEndX(), a.getY(), a1.getEndY(),
+        a.getWidth(), a1.getEndWidth(), a.getHeight(), a1.getEndHeight(), a.getRed(),
+        a1.getEndRed(), a.getGreen(), a1.getEndGreen(), a.getBlue(), a1.getEndBlue());
   }
 
   @Override

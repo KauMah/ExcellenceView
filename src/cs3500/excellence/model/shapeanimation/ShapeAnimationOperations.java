@@ -60,4 +60,10 @@ public interface ShapeAnimationOperations extends AnimationState {
   //new
   Shape getShape();
 
+  void addKeystroke(int keyframeIndex, int startX, int endX,
+      int startY, int endY,
+      int startWidth, int endWidth, int startHeight, int endHeight, int startRed, int endRed,
+      int startGreen, int endGreen, int startBlue, int endBlue);
+
+  void deleteKeystroke(int keyframeIndex);
 }
