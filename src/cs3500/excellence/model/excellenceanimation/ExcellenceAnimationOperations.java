@@ -5,7 +5,7 @@ import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
 import java.util.List;
 
 /**
- * An Interface that describes the operation that can be performed by an Excellence animation
+ * An Interface that describes the operation that can be performed by an Excellence animation.
  */
 public interface ExcellenceAnimationOperations {
 

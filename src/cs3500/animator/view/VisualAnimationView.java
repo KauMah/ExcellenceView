@@ -12,18 +12,18 @@ import javax.swing.JScrollPane;
  */
 public class VisualAnimationView extends JFrame {
 
-  private AnimationPanel panel;
-  private List<Shape> shapes;
-
   /**
    * Public constructor for the visual animation view.
+   *
    * @param tempo tempo of the animation.
-   * @param shapes List of shapes to be animated.
    */
-  public VisualAnimationView(Double tempo, List<Shape> shapes) {
+  public VisualAnimationView(Double tempo, List<Shape> shape) {
     super();
 
-    this.shapes = shapes;
+    AnimationPanel panel;
+    List<Shape> shapes;
+
+    shapes = shape;
     this.setTitle("Animation");
     this.setSize(700, 700);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
