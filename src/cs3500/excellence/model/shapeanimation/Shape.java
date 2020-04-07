@@ -12,7 +12,7 @@ import java.awt.geom.Point2D;
 public class Shape {
 
   /**
-   * An enumeration to describe the type of shape to be drawn
+   * An enumeration to describe the type of shape to be drawn.
    */
   public enum shapeType {
     RECTANGLE {

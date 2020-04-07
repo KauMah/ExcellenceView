@@ -1,7 +1,14 @@
 package cs3500.animator;
 
+/**
+ * Class that will run the main method for the program.
+ */
 public class Excellence {
 
+  /**
+   * main method for the program.
+   * @param args command line arguments.
+   */
   public static void main(String[] args) {
     boolean inProvided = false;
     boolean viewProvided = false;

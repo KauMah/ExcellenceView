@@ -5,7 +5,7 @@ import cs3500.excellence.model.AnimationState;
 import java.util.List;
 
 /**
- * An interface that represents the
+ * An interface that represents the animation operations of a shape.
  */
 public interface ShapeAnimationOperations extends AnimationState {
 

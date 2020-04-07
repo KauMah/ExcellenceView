@@ -115,6 +115,9 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
     }
   }
 
+  /**
+   * Builder class for the model.
+   */
   public final class Builder implements AnimationBuilder<ExcellenceAnimationOperations> {
 
     @Override
