@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ExcellenceView:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ExcellenceView_jar</output-path>
+    <root id="archive" name="ExcellenceView.jar">
+      <element id="module-output" name="ExcellenceView" />
+    </root>
+  </artifact>
+</component>
