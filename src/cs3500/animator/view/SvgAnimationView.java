@@ -15,7 +15,7 @@ public class SvgAnimationView {
   private int tempo;
 
   /**
-   * Public constructor for the SVG animation that takes the modeel as a parameter.
+   * Public constructor for the SVG animation that takes the model as a parameter.
    *
    * @param model Model used to get the animation list and them tempo.
    */
