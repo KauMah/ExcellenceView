@@ -176,6 +176,7 @@ public class ShapeAnimationModel implements ShapeAnimationOperations {
     if(shape.getDimensions().getWidth() == 0 || shape.getDimensions().getHeight() == 0) {
       return true;
     }
+    return false;
   }
 
   @Override

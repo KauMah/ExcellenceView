@@ -40,5 +40,9 @@ public interface ExcellenceAnimationOperations {
 
   void animationAtCurrentTick(int tick);
 
+  public List<Integer> getCanvasDimensions();
+
+  public void setCanvasDimensions();
+
   
 }

@@ -1,7 +1,6 @@
 package cs3500.excellence.model.excellenceanimation;
 
 import cs3500.animator.util.AnimationBuilder;
-import cs3500.excellence.model.animation.AnimationOperations;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationModel;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ import java.util.Objects;
  */
 public final class ExcellenceAnimationModel implements ExcellenceAnimationOperations {
 
+  private List<Integer> canvasDimensions;
   private final List<ShapeAnimationOperations> shapeAnimations;
   //tempo in seconds
   private int tempo;
@@ -24,6 +24,7 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
    */
   public ExcellenceAnimationModel() {
     this.shapeAnimations = new ArrayList<>();
+    this.canvasDimensions = new ArrayList<>();
   }
 
   @Override
@@ -116,11 +117,30 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
     }
   }
 
+  public void setCanvasDimensions(int startingX, int startingY, int width, int height) {
+    if (startingX > 0 && startingY > 0 && width > 0 && height > 0) {
+      canvasDimensions.add(startingX);
+      canvasDimensions.add(startingY);
+      canvasDimensions.add(width);
+      canvasDimensions.add(height);
+    } else {
+      throw new IllegalArgumentException("Issue with given canvas dimensions - Illegal value(s)");
+    }
+  }
+
+  public List<Integer> getCanvasDimensions() {
+    return canvasDimensions;
+  }
+
   /**
    * Builder class for the model.
    */
   public final class Builder implements AnimationBuilder<ExcellenceAnimationOperations> {
-    AnimationOperations out;
+    private final ExcellenceAnimationOperations model;
+
+    public Builder() {
+      this.model = new ExcellenceAnimationModel();
+    }
 
     @Override
     public ExcellenceAnimationOperations build() {
@@ -131,25 +151,25 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
     public AnimationBuilder<ExcellenceAnimationOperations> setBounds(int x, int y, int width,
         int height) {
 
-      return null;
+      return this;
     }
 
     @Override
     public AnimationBuilder<ExcellenceAnimationOperations> declareShape(String name, String type) {
-      return null;
+      return this;
     }
 
     @Override
     public AnimationBuilder<ExcellenceAnimationOperations> addMotion(String name, int t1, int x1,
         int y1, int w1, int h1, int r1, int g1, int b1, int t2, int x2, int y2, int w2, int h2,
         int r2, int g2, int b2) {
-      return null;
+      return this;
     }
 
     @Override
     public AnimationBuilder<ExcellenceAnimationOperations> addKeyframe(String name, int t, int x,
         int y, int w, int h, int r, int g, int b) {
-      return null;
+      return this;
     }
   }
 }
