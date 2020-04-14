@@ -40,6 +40,10 @@ public interface ExcellenceAnimationOperations {
    */
   void animationAtCurrentTick(int tick);
 
+  public List<Integer> getCanvasDimensions();
+
+  public void setCanvasDimensions(int startingX, int startingY, int width, int height);
+
   /**
    * Returns the keyframes for a given shape.
    * @param shape String representing the object ID of the shape.
