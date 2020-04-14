@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 
-import cs3500.animator.model.ReadOnlyAnimationOperations;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,13 +25,13 @@ public class SwingView extends JFrame implements VisualView {
     super();
     ExcellenceAnimationOperations model = m;
     this.setTitle("Animation!");
-    this.setSize(new Dimension(model.getCanvasWidth(), model.getCanvasHeight()));
+    this.setSize(new Dimension(model.getCanvasDimensions().get(2), model.getCanvasDimensions().get(3)));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     AnimationPanel animationPanel = new AnimationPanel(model);
-    animationPanel.setPreferredSize(new Dimension(model.getCanvasWidth(),
-            model.getCanvasHeight()));
-    animationPanel.setLocation(model.getCanvasStartingX(), model.getCanvasStartingY());
+    animationPanel.setPreferredSize(new Dimension(model.getCanvasDimensions().get(2),
+        model.getCanvasDimensions().get(3)));
+    animationPanel.setLocation(model.getCanvasDimensions().get(0), model.getCanvasDimensions().get(1));
     this.add(new JScrollPane(animationPanel), null);
     JPanel buttonPanel = new JPanel();
     buttonPanel.setLayout(new FlowLayout());

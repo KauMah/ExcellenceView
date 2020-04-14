@@ -86,9 +86,9 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
 
     // Adding the view panel...
     AnimationPanel animationPanel = new AnimationPanel(model);
-    animationPanel.setPreferredSize(new Dimension(model.getCanvasWidth(),
-            model.getCanvasHeight()));
-    animationPanel.setLocation(model.getCanvasStartingX(), model.getCanvasStartingY());
+    animationPanel.setPreferredSize(new Dimension(model.getCanvasDimensions().get(2),
+        model.getCanvasDimensions().get(3)));
+    animationPanel.setLocation(model.getCanvasDimensions().get(0), model.getCanvasDimensions().get(1));
     this.add(new JScrollPane(animationPanel), BorderLayout.EAST);
     this.animationPanel = animationPanel;
 
