@@ -1,0 +1,34 @@
+Design Critique
+In the code provided to us there are many interfaces used to implement the animator in different
+ways.  The first one is the AnimationView interface which happens to be empty. We will circle back
+to this one after discussing the other.  The next interface is the interactive view, and then there
+ is one for a text view which is implemented by the text view class and the svg view class.  The
+ interfaces provided here are somewhat flexible given that they are somewhat generic and are
+ implemented by multiple classes.  One way they could have been made more flexible is to implement
+  a very generic interface in IAnimationView which the Interactive view interface and text view
+  interface could implement.  This would provide generic functionality for all the views and allow
+   the customer to understand them at the highest level.
+
+Implementation critique
+The main critique we had of the interface implementations was that in some parts method bodies
+were very long and hard to understand exactly what they were doing, mainly in the Visual View and
+Interactive view.  The text view implementations were very clear and easy to understand.  Some ways
+they could’ve improved this wold be to extract out parts of the long methods into private methods,
+ or simply to add some more in-line comments explaining why they were necessary and what they did.
+
+Documentation Critique
+The javadoc comments provided did a good job of explaining what each methods purpose was however
+as described above with long method bodies we found it would be more helpful to add a few more in
+line comments.  This also led us to realize we could have done a better job with this in our own
+view implementations.
+
+Design/Code limitations
+The views are very capable and seem to provide all the required functionality that is required of
+the view. The interactive view has methods to handle all of the required functionality of an
+interactive view.  This made it convenient to reuse the code because we did not have to mess with
+the functionality because the views are very capable.  When substituting their views into our code
+ it was originally difficult working with changed naming conventions and getting the code to
+ compile at first but we were able to overcome that.  One challenge we did face was understanding
+ the button map they used and text field map in the setListener method on the interactive view.
+  The method was very long and it would’ve been helpful to have some clarifying comments in the
+  method body.
