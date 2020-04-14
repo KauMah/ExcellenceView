@@ -1,16 +1,21 @@
 package cs3500.animator.view;
 
+import cs3500.animator.controller.ControllerType;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
 public interface AnimationView {
+
   /**
-   * Set the listener for any actions.
+   * Sets the controller for the view.
    */
-  void setListener(ActionListener listener);
+  void setController(ControllerType c);
 
   /**
    * Display this view.
+   *
+   * @throws IOException if file is null
    */
-  void display();
+  void display(Appendable file) throws IOException;
 }

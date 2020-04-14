@@ -8,7 +8,7 @@ import javax.swing.JButton;
 /**
  * A class to represent an editable visual animation
  */
-public class EditAnimationView extends VisualAnimationView implements AnimationView{
+public class EditAnimationView extends VisualAnimationView{
   private JButton beg;
   private JButton rew;
   private JButton pausePlay;
@@ -47,7 +47,6 @@ public class EditAnimationView extends VisualAnimationView implements AnimationV
     pack();
   }
 
-  @Override
   public void setListener(ActionListener listener) {
     beg.addActionListener(listener);
     rew.addActionListener(listener);
@@ -60,7 +59,6 @@ public class EditAnimationView extends VisualAnimationView implements AnimationV
   /**
    * Display this view.
    */
-  @Override
   public void display() {
     this.setVisible(true);
   }
