@@ -1,6 +1,8 @@
 package cs3500.excellence.model.excellenceanimation;
 
 import cs3500.animator.util.AnimationBuilder;
+import cs3500.excellence.model.IKeyframe;
+import cs3500.excellence.model.Keyframe;
 import cs3500.excellence.model.animation.AnimationOperations;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationModel;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
@@ -114,6 +116,31 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
     for (ShapeAnimationOperations i : shapeAnimations) {
       i.moveAtCurrentTick(tick);
     }
+  }
+
+  @Override
+  public List<IKeyframe> getKeyframes(String shape) {
+    List<IKeyframe> frames = new ArrayList<>();
+    int endTick = 100000;
+    ShapeAnimationOperations shapeA = getShapeWithObjectId(shape);
+    for (AnimationOperations a : shapeA.getAnimations()) {
+      if(a.getStartTick() != endTick) {
+        frames.add(new Keyframe(a.getStartTick()));
+      }
+      endTick = a.getEndTick();
+      frames.add(new Keyframe(endTick));
+    }
+    return frames;
+  }
+
+  @Override
+  public int getLastTick() {
+    int lastTick = 0;
+    for (ShapeAnimationOperations s : shapeAnimations) {
+      if(s.getLastTick() > lastTick)
+      lastTick = s.getLastTick();
+    }
+    return lastTick;
   }
 
   /**

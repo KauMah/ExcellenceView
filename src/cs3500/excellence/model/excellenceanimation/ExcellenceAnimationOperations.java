@@ -40,7 +40,16 @@ public interface ExcellenceAnimationOperations {
    */
   void animationAtCurrentTick(int tick);
 
+  /**
+   * Returns the keyframes for a given shape.
+   * @param shape String representing the object ID of the shape.
+   * @return List of type IKeyframe for the given shape.
+   */
   List <IKeyframe> getKeyframes(String shape);
 
+  /**
+   * Returns the last tick for all the animations. The end of the whole animaition.
+   * @return integer representing last tick.
+   */
   int getLastTick();
 }

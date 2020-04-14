@@ -1,5 +1,6 @@
 package cs3500.animator.otherview;
 
+import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationOperations;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -21,9 +22,9 @@ public class SwingView extends JFrame implements VisualView {
    * Constructor of the swing view.
    * @param m A read-only animation model with the existing shapes and actions
    */
-  public SwingView(ReadOnlyAnimationOperations m) {
+  public SwingView(ExcellenceAnimationOperations m) {
     super();
-    ReadOnlyAnimationOperations model = m;
+    ExcellenceAnimationOperations model = m;
     this.setTitle("Animation!");
     this.setSize(new Dimension(model.getCanvasWidth(), model.getCanvasHeight()));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

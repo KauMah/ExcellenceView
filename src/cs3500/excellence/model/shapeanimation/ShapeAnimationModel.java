@@ -173,14 +173,25 @@ public class ShapeAnimationModel implements ShapeAnimationOperations {
 
   @Override
   public boolean isInvisible() {
-    if(shape.getDimensions().getWidth() == 0 || shape.getDimensions().getHeight() == 0) {
-      return true;
-    }
+    return shape.getDimensions().getWidth() == 0 || shape.getDimensions().getHeight() == 0;
   }
 
   @Override
   public boolean isOval() {
     return shape.getType().equals(shapeType.OVAL);
+  }
+
+  @Override
+  public AnimationOperations getShapeAtStart() {
+    if(animationList.isEmpty()) {
+      throw new IllegalStateException("Animation list is empty");
+    }
+    return animationList.get(0);
+  }
+
+  @Override
+  public int getLastTick() {
+    return animationList.get(animationList.size() - 1).getEndTick();
   }
 
   @Override

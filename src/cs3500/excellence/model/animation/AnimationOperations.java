@@ -127,30 +127,69 @@ public interface AnimationOperations {
    */
   int getHeight();
 
-  //new
+  /**
+   * End X value for the aniimation.
+   * @return end x value.
+   */
   int getEndX();
 
-  //new
+  /**
+   * End Y value for the animation.
+   * @return end Y value.
+   */
   int getEndY();
 
-  //new
+  /**
+   * End height of the animation.
+   * @return en dheight.
+   */
   int getEndHeight();
 
-  //new
+  /**
+   * end width for the animation.
+   * @return end width of animation.
+   */
   int getEndWidth();
 
-  //new
+  /**
+   * end red color of animation.
+   * @return end red color.
+   */
   int getEndRed();
 
+  /**
+   * end green color of animation.
+   * @return end green color.
+   */
   int getEndGreen();
 
+  /**
+   * end blue color of animation.
+   * @return end blue color.
+   */
   int getEndBlue();
 
+  /**
+   * sets the start time for the animiation.
+   * @param startTime integer representing start time.
+   */
   void setStartTime(int startTime);
 
+  /**
+   * Sets the end time for an animation.
+   * @param endTime integer representing end tie.
+   */
   void setEndTie(int endTime);
 
+  /**
+   * gets the start color for the animation.
+   * @return start color of animation.
+   */
   Color getStartColor();
 
+  /**
+   * gets the ed color for the animation.
+   * @return end color of animation.
+   */
   Color getEndColor();
 }

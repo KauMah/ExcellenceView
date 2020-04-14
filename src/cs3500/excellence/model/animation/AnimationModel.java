@@ -1,5 +1,6 @@
 package cs3500.excellence.model.animation;
 
+import java.awt.Color;
 import java.util.Objects;
 
 /**
@@ -219,6 +220,16 @@ public class AnimationModel implements AnimationOperations {
   @Override
   public void setEndTie(int endTime) {
     this.endTick = endTime;
+  }
+
+  @Override
+  public Color getStartColor() {
+    return new Color(startRed, startGreen, startBlue);
+  }
+
+  @Override
+  public Color getEndColor() {
+    return new Color(endRed, endGreen, endBlue);
   }
 
   @Override
