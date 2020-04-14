@@ -1,6 +1,7 @@
 package cs3500.excellence.model.excellenceanimation;
 
 import cs3500.animator.util.AnimationBuilder;
+import cs3500.excellence.model.shapeanimation.Shape.shapeType;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationModel;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
 import java.util.ArrayList;
@@ -144,18 +145,28 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
 
     @Override
     public ExcellenceAnimationOperations build() {
-      return new ExcellenceAnimationModel();
+      return this.model;
     }
 
     @Override
     public AnimationBuilder<ExcellenceAnimationOperations> setBounds(int x, int y, int width,
         int height) {
-
+      this.model.setCanvasDimensions(x, y, width, height);
       return this;
     }
 
     @Override
     public AnimationBuilder<ExcellenceAnimationOperations> declareShape(String name, String type) {
+      shapeType shape;
+      if (type.toLowerCase().equals("rectangle")) {
+        shape = shapeType.RECTANGLE;
+      } else if (type.toLowerCase().equals("ellipse")) {
+        shape = shapeType.OVAL;
+      } else {
+        throw new IllegalArgumentException("Unsupported shape type");
+      }
+      ShapeAnimationModel temp = new ShapeAnimationModel(name, shape);
+      this.model.addShapeAnimation(temp);
       return this;
     }
 
@@ -163,12 +174,26 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
     public AnimationBuilder<ExcellenceAnimationOperations> addMotion(String name, int t1, int x1,
         int y1, int w1, int h1, int r1, int g1, int b1, int t2, int x2, int y2, int w2, int h2,
         int r2, int g2, int b2) {
+      ShapeAnimationOperations toAdd = null;
+      List<ShapeAnimationOperations> all = this.model.getShapeAnimations();
+      for (ShapeAnimationOperations s : all) {
+        if(name.equals(s.getObjectId())) {
+          toAdd = s;
+          break;
+        }
+      }
+      if (toAdd != null) {
+        toAdd.addAnimation(t1,t2, x1, x2, y1, y2, w1, w2, h1, h2, r1, r2, g1, g2, b1, b2);
+      } else {
+        throw new UnsupportedOperationException("No such shape exists");
+      }
       return this;
     }
 
     @Override
     public AnimationBuilder<ExcellenceAnimationOperations> addKeyframe(String name, int t, int x,
         int y, int w, int h, int r, int g, int b) {
+
       return this;
     }
   }

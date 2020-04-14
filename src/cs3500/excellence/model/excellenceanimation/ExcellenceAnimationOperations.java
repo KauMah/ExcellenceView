@@ -42,9 +42,10 @@ public interface ExcellenceAnimationOperations {
 
   public List<Integer> getCanvasDimensions();
 
-  public void setCanvasDimensions();
-  
+  void setCanvasDimensions(int x, int y, int width, int height);
+
   List <IKeyframe> getKeyframes(String shape);
 
   int getLastTick();
+
 }
