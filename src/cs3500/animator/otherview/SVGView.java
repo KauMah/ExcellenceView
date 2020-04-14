@@ -38,8 +38,8 @@ public class SVGView implements TextualView {
 
   @Override
   public String getText() {
-    str.append("<svg viewbox=\"" + model.getCanvasStartingX() + " " + model.getCanvasStartingY()
-            + " " + model.getCanvasWidth() + " " + model.getCanvasHeight() + "\" version=\"1.1\"\n"
+    str.append("<svg viewbox=\"" + model.getCanvasDimensions().get(0) + " " + model.getCanvasDimensions().get(1)
+            + " " + model.getCanvasDimensions().get(2) + " " + model.getCanvasDimensions().get(3) + "\" version=\"1.1\"\n"
             + "     xmlns=\"http://www.w3.org/2000/svg\">" + "\n");
     List<ShapeAnimationOperations> shapes = model.getShapeAnimations();
 
