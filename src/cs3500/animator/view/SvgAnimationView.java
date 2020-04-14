@@ -1,17 +1,21 @@
 package cs3500.animator.view;
 
+import cs3500.animator.controller.ControllerType;
+import cs3500.animator.controller.NormalController;
 import cs3500.excellence.model.animation.AnimationOperations;
 import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationModel;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * View for the svg animation.
  */
-public class SvgAnimationView {
+public class SvgAnimationView implements AnimationView{
 
   private List<ShapeAnimationOperations> animationList;
   private List<AnimationOperations> shapeOps;
+  private ControllerType controller;
   private int tempo;
 
   /**
@@ -24,8 +28,7 @@ public class SvgAnimationView {
     tempo = model.getTempo();
   }
 
-  @Override
-  public String toString() {
+  public String generateSVG() {
     String out = "<svg width=\"700\" height=\"500\" version=\"1.1\"\nxmlns=\"http://www.w3.org/2000/svg\">";
     out += "\n";
     for (ShapeAnimationOperations a : animationList) {
@@ -176,5 +179,27 @@ public class SvgAnimationView {
     }
     out += "</svg";
     return out;
+  }
+
+  /**
+   * Sets the controller for the view.
+   *
+   * @param c
+   */
+  @Override
+  public void setController(ControllerType c) {
+    this.controller = c;
+  }
+
+  @Override
+  public void display(Appendable file) {
+    if (file == null) {
+      throw new IllegalArgumentException("Output file is null");
+    }
+    try {
+      file.append(generateSVG());
+    } catch(IOException e) {
+      System.out.println(e.getMessage());
+    }
   }
 }
