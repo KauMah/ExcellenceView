@@ -10,10 +10,10 @@ public class AnimationViewFactory {
   /**
    * Creates the appropriate view given a type of view and supporting arguments
    *
-   * @param type            the type of view as a string
-   * @param model           the model
-   * @param fileName        the name of the output file
-   * @param ticksPerSecond  the speed of the animation given in ticks per second (non-negative)
+   * @param type           the type of view as a string
+   * @param model          the model
+   * @param fileName       the name of the output file
+   * @param ticksPerSecond the speed of the animation given in ticks per second (non-negative)
    * @return
    */
   public static IAnimationView createAnimationView(String type, ExcellenceAnimationOperations model,
@@ -31,7 +31,6 @@ public class AnimationViewFactory {
         throw new IllegalArgumentException("View does not exist");
     }
   }
-
 
 
 }

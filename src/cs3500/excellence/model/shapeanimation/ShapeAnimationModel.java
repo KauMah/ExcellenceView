@@ -7,7 +7,6 @@ import java.awt.Color;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -141,7 +140,7 @@ public class ShapeAnimationModel implements ShapeAnimationOperations {
     List<AnimationOperations> animations = getAnimations();
     int start = animations.get(keyframeIndex).getStartTick();
     int end = animations.get(keyframeIndex).getEndTick();
-    if(keyframeIndex == 0) {
+    if (keyframeIndex == 0) {
       for (AnimationOperations a : animations) {
         int startA = a.getStartTick();
         int endA = a.getEndTick();
@@ -153,8 +152,9 @@ public class ShapeAnimationModel implements ShapeAnimationOperations {
       addAnimation(time, time + 20, startX, endX, startY, endY, startWidth, endWidth,
           startHeight, endHeight, startRed, endRed, startGreen, endGreen, startBlue, endBlue);
     } else {
-      animations.get(keyframeIndex).setEndTie(start + ((end-start) / 2));
-      addAnimation((start + ((end-start) / 2)), end, startX, endX, startY, endY, startWidth, endWidth,
+      animations.get(keyframeIndex).setEndTie(start + ((end - start) / 2));
+      addAnimation((start + ((end - start) / 2)), end, startX, endX, startY, endY, startWidth,
+          endWidth,
           startHeight, endHeight, startRed, endRed, startGreen, endGreen, startBlue, endBlue);
     }
   }
@@ -183,7 +183,7 @@ public class ShapeAnimationModel implements ShapeAnimationOperations {
 
   @Override
   public AnimationOperations getShapeAtStart() {
-    if(animationList.isEmpty()) {
+    if (animationList.isEmpty()) {
       throw new IllegalStateException("Animation list is empty");
     }
     return animationList.get(0);

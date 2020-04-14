@@ -5,7 +5,6 @@ import cs3500.excellence.model.IKeyframe;
 import cs3500.excellence.model.Keyframe;
 import cs3500.excellence.model.animation.AnimationOperations;
 import cs3500.excellence.model.shapeanimation.Shape.shapeType;
-
 import cs3500.excellence.model.shapeanimation.ShapeAnimationModel;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
 import java.util.ArrayList;
@@ -128,7 +127,7 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
     int endTick = 100000;
     ShapeAnimationOperations shapeA = getShapeWithObjectId(shape);
     for (AnimationOperations a : shapeA.getAnimations()) {
-      if(a.getStartTick() != endTick) {
+      if (a.getStartTick() != endTick) {
         frames.add(new Keyframe(a.getStartTick()));
       }
       endTick = a.getEndTick();
@@ -141,16 +140,17 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
   public int getLastTick() {
     int lastTick = 0;
     for (ShapeAnimationOperations s : shapeAnimations) {
-      if (s.getLastTick() > lastTick)
+      if (s.getLastTick() > lastTick) {
         lastTick = s.getLastTick();
+      }
     }
     return lastTick;
   }
 
   @Override
   public void removeShape(String objectId) {
-    for(int i  = 0; i < shapeAnimations.size(); i++) {
-      if(shapeAnimations.get(i).getObjectId() == objectId) {
+    for (int i = 0; i < shapeAnimations.size(); i++) {
+      if (shapeAnimations.get(i).getObjectId() == objectId) {
         shapeAnimations.remove(i);
         return;
       }
@@ -179,6 +179,7 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
    * Builder class for the model.
    */
   public final class Builder implements AnimationBuilder<ExcellenceAnimationOperations> {
+
     private final ExcellenceAnimationOperations model;
 
     public Builder() {
@@ -219,13 +220,13 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
       ShapeAnimationOperations toAdd = null;
       List<ShapeAnimationOperations> all = this.model.getShapeAnimations();
       for (ShapeAnimationOperations s : all) {
-        if(name.equals(s.getObjectId())) {
+        if (name.equals(s.getObjectId())) {
           toAdd = s;
           break;
         }
       }
       if (toAdd != null) {
-        toAdd.addAnimation(t1,t2, x1, x2, y1, y2, w1, w2, h1, h2, r1, r2, g1, g2, b1, b2);
+        toAdd.addAnimation(t1, t2, x1, x2, y1, y2, w1, w2, h1, h2, r1, r2, g1, g2, b1, b2);
       } else {
         throw new UnsupportedOperationException("No such shape exists");
       }

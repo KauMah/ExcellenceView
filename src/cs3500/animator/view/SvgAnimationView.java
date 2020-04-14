@@ -1,7 +1,6 @@
 package cs3500.animator.view;
 
 import cs3500.animator.controller.ControllerType;
-import cs3500.animator.controller.NormalController;
 import cs3500.excellence.model.animation.AnimationOperations;
 import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationModel;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
@@ -11,7 +10,7 @@ import java.util.List;
 /**
  * View for the svg animation.
  */
-public class SvgAnimationView implements AnimationView{
+public class SvgAnimationView implements AnimationView {
 
   private List<ShapeAnimationOperations> animationList;
   private List<AnimationOperations> shapeOps;
@@ -198,7 +197,7 @@ public class SvgAnimationView implements AnimationView{
     }
     try {
       file.append(generateSVG());
-    } catch(IOException e) {
+    } catch (IOException e) {
       System.out.println(e.getMessage());
     }
   }

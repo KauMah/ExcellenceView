@@ -10,11 +10,12 @@ public interface ControllerType extends ActionListener {
 
   /**
    * Gets the model which contains the necessary operations for the shapes.
+   *
    * @return an ExcellenceAnimationModel
    */
-  public ExcellenceAnimationModel getModel();
+  ExcellenceAnimationModel getModel();
 
-  public AnimationView getView();
+  AnimationView getView();
 
   void run(Appendable file) throws IOException;
 

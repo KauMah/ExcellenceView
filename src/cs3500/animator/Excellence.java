@@ -7,6 +7,7 @@ public class Excellence {
 
   /**
    * main method for the program.
+   *
    * @param args command line arguments.
    */
   public static void main(String[] args) {

@@ -36,14 +36,14 @@ public class Shape {
   /**
    * Constructs a Shape object given the color, size, and position parameters.
    *
-   * @param red     the intensity of red in the color
-   * @param green   the intensity of green in the color
-   * @param blue    the intensity of blue in the color
-   * @param width   the overall width of the shape
-   * @param height  the overall height of the shape
-   * @param x       the x-coordinate of the position
-   * @param y       the y-coordinate of the position
-   * @param type    an enum determining the type of shape as a shapeType
+   * @param red    the intensity of red in the color
+   * @param green  the intensity of green in the color
+   * @param blue   the intensity of blue in the color
+   * @param width  the overall width of the shape
+   * @param height the overall height of the shape
+   * @param x      the x-coordinate of the position
+   * @param y      the y-coordinate of the position
+   * @param type   an enum determining the type of shape as a shapeType
    */
   public Shape(int red, int green, int blue, int width, int height, int x, int y, shapeType type) {
     this.color = new Color(red, green, blue);
@@ -54,6 +54,7 @@ public class Shape {
 
   /**
    * Returns the color of the shape.
+   *
    * @return a color object representing the color of the shape
    */
   public Color getColor() {
@@ -62,6 +63,7 @@ public class Shape {
 
   /**
    * Returns the overall two dimensional size of the shape.
+   *
    * @return a Dimension2D object with an x and y component
    */
   public Dimension2D getDimensions() {
@@ -70,6 +72,7 @@ public class Shape {
 
   /**
    * Returns the position of an object in 2D space.
+   *
    * @return a Point2D object with an x and y component
    */
   public Point2D getPosition() {
@@ -78,6 +81,7 @@ public class Shape {
 
   /**
    * Sets the color of the shape.
+   *
    * @param red   the red value of the color
    * @param green the green value of the color
    * @param blue  the blue value of the color
@@ -90,8 +94,9 @@ public class Shape {
 
   /**
    * Sets the dimensions of the shape.
-   * @param width   the width of the shape
-   * @param height  the height of the shape
+   *
+   * @param width  the width of the shape
+   * @param height the height of the shape
    */
   public void setDimensions(int width, int height) {
     this.dimensions = new Dimension((int) dimensions.getWidth() + width,
@@ -100,6 +105,7 @@ public class Shape {
 
   /**
    * Sets the position of the shape in 2D space.
+   *
    * @param x the x-coordinate of the shape
    * @param y the y-coordinate of the shape
    */

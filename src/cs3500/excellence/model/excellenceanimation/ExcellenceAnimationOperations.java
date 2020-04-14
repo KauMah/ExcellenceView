@@ -42,28 +42,32 @@ public interface ExcellenceAnimationOperations {
 
   /**
    * get the dimensions of the canvas.
+   *
    * @return List representing dimensions of the canvas.
    */
-  public List<Integer> getCanvasDimensions();
+  List<Integer> getCanvasDimensions();
 
   /**
    * sets the dimensions of the canvas.
-   * @param x x dimension.
-   * @param y y dimension.
-   * @param width width of canvas.
+   *
+   * @param x      x dimension.
+   * @param y      y dimension.
+   * @param width  width of canvas.
    * @param height height of canvas.
    */
   void setCanvasDimensions(int x, int y, int width, int height);
 
   /**
    * Returns the keyframes for a given shape.
+   *
    * @param shape String representing the object ID of the shape.
    * @return List of type IKeyframe for the given shape.
    */
-  List <IKeyframe> getKeyframes(String shape);
+  List<IKeyframe> getKeyframes(String shape);
 
   /**
    * Returns the last tick for all the animations. The end of the whole animaition.
+   *
    * @return integer representing last tick.
    */
   int getLastTick();

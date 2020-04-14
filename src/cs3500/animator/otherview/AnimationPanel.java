@@ -3,23 +3,24 @@ package cs3500.animator.otherview;
 import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationOperations;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
-
-import javax.swing.JPanel;
-
 import java.awt.geom.Ellipse2D;
 import java.util.List;
+import javax.swing.JPanel;
 
 /**
  * The panel for the animation, which draws the shapes.
  */
 public class AnimationPanel extends JPanel {
+
   private final ExcellenceAnimationOperations model;
+
   /**
    * Constructs the panel from a read-only model.
+   *
    * @param model the model
    */
   public AnimationPanel(ExcellenceAnimationOperations model) {
@@ -41,11 +42,12 @@ public class AnimationPanel extends JPanel {
       }
       java.awt.Shape shape = s.isOval() ? new Ellipse2D.Double(s.getCurrentPosition().getX(),
           s.getCurrentPosition().getY(),
-              s.getCurrentDimensions().getWidth(), s.getCurrentDimensions().getHeight())
-              : new Rectangle.Double(s.getCurrentPosition().getX(),
+          s.getCurrentDimensions().getWidth(), s.getCurrentDimensions().getHeight())
+          : new Rectangle.Double(s.getCurrentPosition().getX(),
               s.getCurrentPosition().getY(),
               s.getCurrentDimensions().getWidth(), s.getCurrentDimensions().getWidth());
-      g2d.setColor(new Color(s.getCurrentColor().getRed(), s.getCurrentColor().getGreen(), s.getCurrentColor().getBlue()));
+      g2d.setColor(new Color(s.getCurrentColor().getRed(), s.getCurrentColor().getGreen(),
+          s.getCurrentColor().getBlue()));
 
       g2d.fill(shape);
     }

@@ -2,13 +2,11 @@ package cs3500.animator.controller;
 
 import cs3500.animator.view.AnimationView;
 import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationModel;
-import cs3500.excellence.model.shapeanimation.Shape;
-import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.util.List;
 
 public class NormalController implements ControllerType {
+
   ExcellenceAnimationModel model;
   AnimationView view;
   private int tick;
@@ -73,7 +71,8 @@ public class NormalController implements ControllerType {
   }
 
   @Override
-  public void addKeyframe(String objectId, String color, String position, String width, String height, int tick) {
+  public void addKeyframe(String objectId, String color, String position, String width,
+      String height, int tick) {
 
   }
 

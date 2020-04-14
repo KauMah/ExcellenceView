@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
  * Class representing the visual animation view for the animation.
  */
 public class VisualAnimationView extends JFrame implements AnimationView {
+
   private ControllerType controller;
   private final AnimationPanel panel;
 

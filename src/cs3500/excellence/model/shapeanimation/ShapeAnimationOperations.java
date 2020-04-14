@@ -1,7 +1,7 @@
 package cs3500.excellence.model.shapeanimation;
 
-import cs3500.excellence.model.animation.AnimationOperations;
 import cs3500.excellence.model.AnimationState;
+import cs3500.excellence.model.animation.AnimationOperations;
 import java.util.List;
 
 /**
@@ -59,27 +59,29 @@ public interface ShapeAnimationOperations extends AnimationState {
 
   /**
    * returns the shape.
+   *
    * @return shape.
    */
   Shape getShape();
 
   /**
    * Adds a keyframe to the animation list.
+   *
    * @param keyframeIndex index of where to add the keyframe.
-   * @param startX start X position.
-   * @param endX end x position.
-   * @param startY start Y position.
-   * @param endY end Y position.
-   * @param startWidth start width of shape.
-   * @param endWidth end width of shape.
-   * @param startHeight start height of shape.
-   * @param endHeight end height of shape.
-   * @param startRed start red color of shape.
-   * @param endRed end red color of shape.
-   * @param startGreen start Green color of shape.
-   * @param endGreen end green color of shape.
-   * @param startBlue start blue color of shape.
-   * @param endBlue end blue color of shape.
+   * @param startX        start X position.
+   * @param endX          end x position.
+   * @param startY        start Y position.
+   * @param endY          end Y position.
+   * @param startWidth    start width of shape.
+   * @param endWidth      end width of shape.
+   * @param startHeight   start height of shape.
+   * @param endHeight     end height of shape.
+   * @param startRed      start red color of shape.
+   * @param endRed        end red color of shape.
+   * @param startGreen    start Green color of shape.
+   * @param endGreen      end green color of shape.
+   * @param startBlue     start blue color of shape.
+   * @param endBlue       end blue color of shape.
    */
   void addKeystroke(int keyframeIndex, int startX, int endX,
       int startY, int endY,
@@ -88,30 +90,35 @@ public interface ShapeAnimationOperations extends AnimationState {
 
   /**
    * Removes a keystroke from the shape.
+   *
    * @param keyframeIndex index of the keyframe to delete.
    */
   void deleteKeystroke(int keyframeIndex);
 
   /**
    * Returns boolean whether or not the shape becomes visible.
+   *
    * @return true if shape is invisible.
    */
   boolean isInvisible();
 
   /**
    * Returns boolean if the shape is an oval.
+   *
    * @return true if shapeType is oval.
    */
   boolean isOval();
 
   /**
    * Gets the characteristics for the shape on its first animation.
+   *
    * @return Animation characteristics for the first animation on the shape.
    */
   AnimationOperations getShapeAtStart();
 
   /**
    * Returns the last tick for the animation on a shape.
+   *
    * @return last tick for an animation.
    */
   int getLastTick();

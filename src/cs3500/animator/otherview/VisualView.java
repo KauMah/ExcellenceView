@@ -6,8 +6,7 @@ package cs3500.animator.otherview;
 public interface VisualView extends IAnimationView {
 
   /**
-   * Make the view visible. This is usually called
-   * after the view is constructed
+   * Make the view visible. This is usually called after the view is constructed
    */
   void makeVisible();
 

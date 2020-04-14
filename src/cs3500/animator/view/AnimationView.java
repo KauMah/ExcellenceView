@@ -1,8 +1,6 @@
 package cs3500.animator.view;
 
 import cs3500.animator.controller.ControllerType;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 
 public interface AnimationView {

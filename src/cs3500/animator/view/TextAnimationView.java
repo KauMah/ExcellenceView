@@ -7,7 +7,8 @@ import java.io.IOException;
 /**
  * Public class for the text animation view.
  */
-public class TextAnimationView implements AnimationView{
+public class TextAnimationView implements AnimationView {
+
   private ControllerType controller;
 
 
@@ -39,7 +40,7 @@ public class TextAnimationView implements AnimationView{
     }
     try {
       file.append(this.controller.getModel().toString());
-    } catch(IOException e) {
+    } catch (IOException e) {
       System.out.println(e.getMessage());
     }
   }

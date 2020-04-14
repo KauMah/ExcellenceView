@@ -4,16 +4,16 @@ import java.awt.Color;
 import java.awt.geom.Point2D;
 
 /**
- * Class represnting a keyframe that implements the IKeyframe interface.
- * Represents a set of characteristic at a keyframe.
+ * Class represnting a keyframe that implements the IKeyframe interface. Represents a set of
+ * characteristic at a keyframe.
  */
 public class Keyframe implements IKeyframe {
 
   private final int tick;
-  private final int width;
-  private final int height;
-  private final Point2D position;
-  private final Color color;
+//  private final int width;
+//  private final int height;
+//  private final Point2D position;
+//  private final Color color;
 
   public Keyframe(int tick) {
     this.tick = tick;
@@ -27,21 +27,21 @@ public class Keyframe implements IKeyframe {
 
   @Override
   public int getWidth() {
-    return width;
+    return 0;
   }
 
   @Override
   public Point2D getPosition() {
-    return position;
+    return null;
   }
 
   @Override
   public Color getColor() {
-    return color;
+    return null;
   }
 
   @Override
   public int getHeight() {
-    return height;
+    return 0;
   }
 }

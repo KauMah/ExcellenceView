@@ -8,7 +8,8 @@ import javax.swing.JButton;
 /**
  * A class to represent an editable visual animation
  */
-public class EditAnimationView extends VisualAnimationView{
+public class EditAnimationView extends VisualAnimationView {
+
   private JButton beg;
   private JButton rew;
   private JButton pausePlay;

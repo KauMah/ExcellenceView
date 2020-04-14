@@ -1,22 +1,10 @@
 package cs3500.animator.otherview;
 
 import cs3500.animator.controller.ControllerType;
-
 import cs3500.excellence.model.IKeyframe;
 import cs3500.excellence.model.Keyframe;
-import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationModel;
 import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationOperations;
-import cs3500.excellence.model.shapeanimation.ShapeAnimationModel;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -30,10 +18,18 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 /**
- * Class representing the interactive view. Takes in action listeners to get feedback from
- * the user and uses the JFrame class to build an interactive window.
+ * Class representing the interactive view. Takes in action listeners to get feedback from the user
+ * and uses the JFrame class to build an interactive window.
  */
 public class InteractiveView extends JFrame implements IInteractiveView, ActionListener {
 
@@ -47,7 +43,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
   private Map<ButtonNames, JButton> buttonMap;
   private Map<TextFieldNames, JTextField> textFieldMap;
   private final List<ButtonNames> animationButtons = new ArrayList<ButtonNames>(
-          Arrays.asList(ButtonNames.PLAY, ButtonNames.PAUSE, ButtonNames.RESTART,
+      Arrays.asList(ButtonNames.PLAY, ButtonNames.PAUSE, ButtonNames.RESTART,
           ButtonNames.ENABLE_LOOPING, ButtonNames.DISABLE_LOOPING));
   private boolean enableShapeEdit = false;
   private boolean enableKeyframeEdit = false;
@@ -55,13 +51,14 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
   private String shapeEdit = "";
   private IKeyframe keyFrameToEdit = null;
   private final List<TextFieldNames> editKeyframeFields = new ArrayList<>(
-          Arrays.asList(TextFieldNames.POSITION_ADD_KEYFRAME,
-                  TextFieldNames.WIDTH_ADD_KEYFRAME,
-                  TextFieldNames.HEIGHT_ADD_KEYFRAME,
-                  TextFieldNames.COLOR_ADD_KEYFRAME));
+      Arrays.asList(TextFieldNames.POSITION_ADD_KEYFRAME,
+          TextFieldNames.WIDTH_ADD_KEYFRAME,
+          TextFieldNames.HEIGHT_ADD_KEYFRAME,
+          TextFieldNames.COLOR_ADD_KEYFRAME));
 
   /**
    * Constructor of the interactive view.
+   *
    * @param m read only animation operation model
    * @param s speed of the animation
    */
@@ -88,7 +85,8 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
     AnimationPanel animationPanel = new AnimationPanel(model);
     animationPanel.setPreferredSize(new Dimension(model.getCanvasDimensions().get(2),
         model.getCanvasDimensions().get(3)));
-    animationPanel.setLocation(model.getCanvasDimensions().get(0), model.getCanvasDimensions().get(1));
+    animationPanel
+        .setLocation(model.getCanvasDimensions().get(0), model.getCanvasDimensions().get(1));
     this.add(new JScrollPane(animationPanel), BorderLayout.EAST);
     this.animationPanel = animationPanel;
 
@@ -151,7 +149,8 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
         listener.displayError("No shape to remove");
         return;
       }
-      listener.removeShape(model.getShapeAnimations().get(shapeList.getSelectedIndex()).getObjectId());
+      listener
+          .removeShape(model.getShapeAnimations().get(shapeList.getSelectedIndex()).getObjectId());
       refresh();
     });
 
@@ -202,7 +201,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
     this.buttonMap.get(ButtonNames.ADD_KEYFRAME_OPTION).addActionListener((e) -> {
       enableKeyframeEdit = true;
       int selectedTick = model.getKeyframes(shapeEdit).isEmpty()
-              ? 1 : model.getShapeWithObjectId(shapeEdit).getAnimations().get(0).getStartTick();
+          ? 1 : model.getShapeWithObjectId(shapeEdit).getAnimations().get(0).getStartTick();
       keyFrameToEdit = new Keyframe(selectedTick);
       editType = ButtonNames.ADD_KEYFRAME_OPTION;
       setEditKeyframeFields(keyFrameToEdit);
@@ -243,9 +242,8 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
     this.buttonMap.get(ButtonNames.SELECT_TICK_TO_ADD_KEYFRAME).addActionListener((e) -> {
       try {
         keyFrameToEdit = new Keyframe(Integer.parseInt(textFieldMap
-                .get(TextFieldNames.TICK_ADD_KEYFRAME).getText()));
-      }
-      catch (NumberFormatException err) {
+            .get(TextFieldNames.TICK_ADD_KEYFRAME).getText()));
+      } catch (NumberFormatException err) {
         listener.displayError("Invalid tick number.");
       }
       refresh();
@@ -255,19 +253,18 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
     this.buttonMap.get(ButtonNames.SAVE_KEYFRAME).addActionListener((e) -> {
       if (editType == ButtonNames.EDIT_KEYFRAME_OPTION) {
         listener.replaceKeyframe(shapeEdit,
-                textFieldMap.get(TextFieldNames.COLOR_ADD_KEYFRAME).getText(),
-                textFieldMap.get(TextFieldNames.POSITION_ADD_KEYFRAME).getText(),
-                textFieldMap.get(TextFieldNames.WIDTH_ADD_KEYFRAME).getText(),
-                textFieldMap.get(TextFieldNames.HEIGHT_ADD_KEYFRAME).getText(),
-                keyFrameToEdit.getTick());
-      }
-      else {
+            textFieldMap.get(TextFieldNames.COLOR_ADD_KEYFRAME).getText(),
+            textFieldMap.get(TextFieldNames.POSITION_ADD_KEYFRAME).getText(),
+            textFieldMap.get(TextFieldNames.WIDTH_ADD_KEYFRAME).getText(),
+            textFieldMap.get(TextFieldNames.HEIGHT_ADD_KEYFRAME).getText(),
+            keyFrameToEdit.getTick());
+      } else {
         listener.addKeyframe(shapeEdit,
-                textFieldMap.get(TextFieldNames.COLOR_ADD_KEYFRAME).getText(),
-                textFieldMap.get(TextFieldNames.POSITION_ADD_KEYFRAME).getText(),
-                textFieldMap.get(TextFieldNames.WIDTH_ADD_KEYFRAME).getText(),
-                textFieldMap.get(TextFieldNames.HEIGHT_ADD_KEYFRAME).getText(),
-                keyFrameToEdit.getTick());
+            textFieldMap.get(TextFieldNames.COLOR_ADD_KEYFRAME).getText(),
+            textFieldMap.get(TextFieldNames.POSITION_ADD_KEYFRAME).getText(),
+            textFieldMap.get(TextFieldNames.WIDTH_ADD_KEYFRAME).getText(),
+            textFieldMap.get(TextFieldNames.HEIGHT_ADD_KEYFRAME).getText(),
+            keyFrameToEdit.getTick());
       }
       listener.setTick(keyFrameToEdit.getTick());
       updateFramesList();
@@ -279,7 +276,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
 
     // Add the controller as a listener for the animation buttons (no custom action listener
     // necessary)
-    for (ButtonNames b: animationButtons) {
+    for (ButtonNames b : animationButtons) {
       this.buttonMap.get(b).addActionListener(listener);
     }
 
@@ -289,11 +286,12 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
 
   /**
    * Returns the selected keyframe.
+   *
    * @return the keyframe
    */
   private IKeyframe getSelectedKeyframe() {
     return model.getKeyframes(shapeEdit)
-            .get(framesList.getSelectedIndex());
+        .get(framesList.getSelectedIndex());
   }
 
   @Override
@@ -331,6 +329,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
 
   /**
    * Sets the initial text field values based on the keyframe being edited.
+   *
    * @param kf the keyframe being edited
    */
   private void setEditKeyframeFields(IKeyframe kf) {
@@ -394,13 +393,13 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
 
   /**
    * Validates and sets the initially selected index of the frame list.
+   *
    * @param index the index
    */
   private void setSelectedFrameIndex(int index) {
     if (index < model.getKeyframes(shapeEdit).size()) {
       framesList.setSelectedIndex(index);
-    }
-    else {
+    } else {
       framesList.setSelectedIndex(-1);
       enableKeyframeEdit = false;
     }
@@ -408,6 +407,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
 
   /**
    * Creates and loads all the buttons used in this view into a map of button names and JButtons.
+   *
    * @param buttonNames all button names
    */
   private void addButtonsToMap(ButtonNames... buttonNames) {
@@ -418,8 +418,9 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
   }
 
   /**
-   * Creates and loads all the text fields used in this view into a map of
-   * text field names and JTextField.
+   * Creates and loads all the text fields used in this view into a map of text field names and
+   * JTextField.
+   *
    * @param textFieldNames all button names
    */
   private void addTextFieldsToMap(TextFieldNames... textFieldNames) {
@@ -443,6 +444,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
 
   /**
    * Creates a label based on the text field name.
+   *
    * @param n the text field name
    * @return the JLabel component
    */
@@ -470,36 +472,35 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
 
     // row 0
     rows.add(getAboveAndBelowPanel(getLabel(TextFieldNames.SET_SPEED),
-           getSideBySidePanel(textFieldMap.get(TextFieldNames.SET_SPEED),
-                   buttonMap.get(ButtonNames.SET_SPEED))));
-
+        getSideBySidePanel(textFieldMap.get(TextFieldNames.SET_SPEED),
+            buttonMap.get(ButtonNames.SET_SPEED))));
 
     // row 1
     rows.add(getAboveAndBelowPanel(getLabel(TextFieldNames.NAME_ADD_SHAPE),
-            getSideBySidePanel(textFieldMap.get(TextFieldNames.NAME_ADD_SHAPE),
-                    getSideBySidePanel(buttonMap.get(ButtonNames.ADD_OVAL),
-                            buttonMap.get(ButtonNames.ADD_RECT)))));
+        getSideBySidePanel(textFieldMap.get(TextFieldNames.NAME_ADD_SHAPE),
+            getSideBySidePanel(buttonMap.get(ButtonNames.ADD_OVAL),
+                buttonMap.get(ButtonNames.ADD_RECT)))));
 
     // row 2
     rows.add(getAboveAndBelowPanel(new JLabel("Edit shape:"),
-            getSideBySidePanel(shapeList,
-                    buttonMap.get(ButtonNames.REMOVE_SHAPE),
-                    buttonMap.get(ButtonNames.EDIT_SHAPE))));
+        getSideBySidePanel(shapeList,
+            buttonMap.get(ButtonNames.REMOVE_SHAPE),
+            buttonMap.get(ButtonNames.EDIT_SHAPE))));
 
     if (enableShapeEdit) {
       rows.add(getAboveAndBelowPanel(new JLabel("Editing shape " + shapeEdit + ":"),
-              getSideBySidePanel(buttonMap.get(ButtonNames.EDIT_KEYFRAME_OPTION),
-                      buttonMap.get(ButtonNames.ADD_KEYFRAME_OPTION),
-                      buttonMap.get(ButtonNames.REMOVE_KEYFRAME_OPTION))));
+          getSideBySidePanel(buttonMap.get(ButtonNames.EDIT_KEYFRAME_OPTION),
+              buttonMap.get(ButtonNames.ADD_KEYFRAME_OPTION),
+              buttonMap.get(ButtonNames.REMOVE_KEYFRAME_OPTION))));
     }
     if (enableKeyframeEdit) {
       switch (editType) {
         case EDIT_KEYFRAME_OPTION:
           rows.add(getAboveAndBelowPanel(new JLabel("Select keyframe to edit:"),
-                  getSideBySidePanel(framesList,
-                          buttonMap.get(ButtonNames.SELECT_KEYFRAME_TO_EDIT)),
-                  new JLabel("Editing keyframe (tick "
-                          + Integer.toString(keyFrameToEdit.getTick()) + "):")));
+              getSideBySidePanel(framesList,
+                  buttonMap.get(ButtonNames.SELECT_KEYFRAME_TO_EDIT)),
+              new JLabel("Editing keyframe (tick "
+                  + keyFrameToEdit.getTick() + "):")));
           rows.add(editKeyframePanel);
           JPanel c = new JPanel();
           c.setLayout(new FlowLayout());
@@ -508,10 +509,10 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
           break;
         case ADD_KEYFRAME_OPTION:
           rows.add(getAboveAndBelowPanel(new JLabel("Select tick to insert keyframe:"),
-                  getSideBySidePanel(textFieldMap.get(TextFieldNames.TICK_ADD_KEYFRAME),
-                          buttonMap.get(ButtonNames.SELECT_TICK_TO_ADD_KEYFRAME)),
-                  new JLabel("Keyframe to add at tick "
-                          + Integer.toString(keyFrameToEdit.getTick()))));
+              getSideBySidePanel(textFieldMap.get(TextFieldNames.TICK_ADD_KEYFRAME),
+                  buttonMap.get(ButtonNames.SELECT_TICK_TO_ADD_KEYFRAME)),
+              new JLabel("Keyframe to add at tick "
+                  + keyFrameToEdit.getTick())));
           rows.add(editKeyframePanel);
           JPanel c2 = new JPanel();
           c2.setLayout(new FlowLayout());
@@ -520,8 +521,8 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
           break;
         case REMOVE_KEYFRAME_OPTION:
           rows.add(getAboveAndBelowPanel(new JLabel("Select keyframe to remove:"),
-                  getSideBySidePanel(framesList,
-                          buttonMap.get(ButtonNames.SELECT_KEYFRAME_TO_REMOVE))));
+              getSideBySidePanel(framesList,
+                  buttonMap.get(ButtonNames.SELECT_KEYFRAME_TO_REMOVE))));
           break;
         default:
           break;
@@ -539,6 +540,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
 
   /**
    * Gets the panel with fields for editing/adding a keyframe.
+   *
    * @return the JPanel
    */
   private JPanel getEditKeyframePanel() {
@@ -547,8 +549,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
       public void paintComponent(Graphics g) {
         if (enableKeyframeEdit) {
           this.setVisible(true);
-        }
-        else {
+        } else {
           this.setVisible(false);
         }
         super.paintComponent(g);
@@ -572,6 +573,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
 
   /**
    * Creates and returns a JPanel with the label above and the text field below.
+   *
    * @param textField the textfield name
    * @return the JPanel component
    */
@@ -586,6 +588,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
 
   /**
    * Creates a panel with the given components laid side by side.
+   *
    * @param c the components
    * @return the panel
    */
@@ -600,6 +603,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
 
   /**
    * Creates a panel with the given components laid in a column.
+   *
    * @param c the components
    * @return the panel
    */
