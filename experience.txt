@@ -1,0 +1,17 @@
+
+Overall, we found this experience much more challenging than we had originally expected.
+We originally thought it would not be very difficult to simply implement the views we were provided
+in our controller however we did run into some problems.
+
+Primarily,  we found that we did not do a great job factoring things out into perfect MVC format.
+ Many methods on our model should have been implemented on the controller and it was difficult
+ refactoring so that all the methods were in the proper class.  This is the first thing we did
+ before even beginning to implement the provided views because we thought in order to implement
+ another view it would be easiest if all of our classes were using good MVC practice.  The views
+ given to us were very similar to our own however we did learn from their interactive view how we
+ could’ve better implemented the logic for editing keyframes by separating the cases into color,
+ height, position, and width.
+
+Our experience with our providers was very positive.  They provided us with the code
+on time and responded to the few questions we had in a timely manner.  For the most part their
+code was robust, flexible, and easy to understand.

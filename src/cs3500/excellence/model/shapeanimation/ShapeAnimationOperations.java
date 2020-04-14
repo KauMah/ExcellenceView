@@ -66,4 +66,8 @@ public interface ShapeAnimationOperations extends AnimationState {
       int startGreen, int endGreen, int startBlue, int endBlue);
 
   void deleteKeystroke(int keyframeIndex);
+
+  boolean isInvisible();
+
+  boolean isOval();
 }
