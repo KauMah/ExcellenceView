@@ -70,4 +70,6 @@ public interface ShapeAnimationOperations extends AnimationState {
   boolean isInvisible();
 
   boolean isOval();
+
+  AnimationOperations getShapeAtStart();
 }

@@ -1,6 +1,8 @@
 package cs3500.excellence.model.animation;
 
 
+import java.awt.Color;
+
 /**
  * An interface that details the operations that can occur on an animation.
  */
@@ -147,4 +149,8 @@ public interface AnimationOperations {
   void setStartTime(int startTime);
 
   void setEndTie(int endTime);
+
+  Color getStartColor();
+
+  Color getEndColor();
 }

@@ -1,13 +1,13 @@
 package cs3500.animator.otherview;
 
 import cs3500.animator.controller.ControllerType;
-import cs3500.animator.controller.Keyframe;
-import cs3500.animator.controller.IController;
-import cs3500.animator.model.ReadOnlyAnimationOperations;
-import cs3500.animator.model.Shape;
 
+import cs3500.excellence.model.IKeyframe;
+import cs3500.excellence.model.Keyframe;
 import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationModel;
 import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationOperations;
+import cs3500.excellence.model.shapeanimation.ShapeAnimationModel;
+import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -53,7 +53,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
   private boolean enableKeyframeEdit = false;
   private ButtonNames editType;
   private String shapeEdit = "";
-  private Keyframe keyFrameToEdit = null;
+  private IKeyframe keyFrameToEdit = null;
   private final List<TextFieldNames> editKeyframeFields = new ArrayList<>(
           Arrays.asList(TextFieldNames.POSITION_ADD_KEYFRAME,
                   TextFieldNames.WIDTH_ADD_KEYFRAME,
@@ -151,7 +151,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
         listener.displayError("No shape to remove");
         return;
       }
-      listener.removeShape(model.getAnimatedShapes().get(shapeList.getSelectedIndex()).getId());
+      listener.removeShape(model.getShapeAnimations().get(shapeList.getSelectedIndex()).getObjectId());
       refresh();
     });
 
@@ -166,10 +166,10 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
         listener.displayError("No shape to edit");
         return;
       }
-      shapeEdit = model.getAnimatedShapes().get(shapeList.getSelectedIndex()).getId();
+      shapeEdit = model.getShapeAnimations().get(shapeList.getSelectedIndex()).getObjectId();
       enableShapeEdit = true; // TODO: set when enalbeShapeEdit -> false
       List<String> frameTickList = new ArrayList<>();
-      for (Keyframe kf : model.getKeyframes(shapeEdit)) {
+      for (IKeyframe kf : model.getKeyframes(shapeEdit)) {
         frameTickList.add("Tick " + kf.getTick());
       }
       framesList = new JComboBox(frameTickList.toArray());
@@ -202,7 +202,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
     this.buttonMap.get(ButtonNames.ADD_KEYFRAME_OPTION).addActionListener((e) -> {
       enableKeyframeEdit = true;
       int selectedTick = model.getKeyframes(shapeEdit).isEmpty()
-              ? 1 : model.getAnimatedShape(shapeEdit).getFirstTick();
+              ? 1 : model.getShapeWithObjectId(shapeEdit).getAnimations().get(0).getStartTick();
       keyFrameToEdit = new Keyframe(selectedTick);
       editType = ButtonNames.ADD_KEYFRAME_OPTION;
       setEditKeyframeFields(keyFrameToEdit);
@@ -291,7 +291,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
    * Returns the selected keyframe.
    * @return the keyframe
    */
-  private Keyframe getSelectedKeyframe() {
+  private IKeyframe getSelectedKeyframe() {
     return model.getKeyframes(shapeEdit)
             .get(framesList.getSelectedIndex());
   }
@@ -307,15 +307,16 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
    * Updates the list of keyframe for th current shape being edited.
    */
   private void updateFramesList() {
-    List<Keyframe> frames = model.getKeyframes(shapeEdit);
+    List<IKeyframe> frames = model.getKeyframes(shapeEdit);
     framesList.removeAllItems();
-    for (Keyframe kf : frames) {
+    for (IKeyframe kf : frames) {
       framesList.addItem("Tick " + kf.getTick());
     }
     if (editType != null) {
       switch (editType) {
         case ADD_KEYFRAME_OPTION:
-          keyFrameToEdit = new Keyframe(model.getAnimatedShape(shapeEdit).getFirstTick());
+          keyFrameToEdit = new Keyframe(model.getShapeWithObjectId(shapeEdit)
+              .getAnimations().get(0).getStartTick());
           break;
         case EDIT_KEYFRAME_OPTION:
         case REMOVE_KEYFRAME_OPTION:
@@ -332,7 +333,7 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
    * Sets the initial text field values based on the keyframe being edited.
    * @param kf the keyframe being edited
    */
-  private void setEditKeyframeFields(Keyframe kf) {
+  private void setEditKeyframeFields(IKeyframe kf) {
     String toString = "";
     if (editType == ButtonNames.ADD_KEYFRAME_OPTION) {
       textFieldMap.get(TextFieldNames.TICK_ADD_KEYFRAME).setText(Integer.toString(kf.getTick()));
@@ -371,8 +372,8 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
     try {
       shapeList.removeAllItems();
       framesList.removeAll();
-      for (Shape s : model.getShapes()) {
-        shapeList.addItem("Shape " + s.getId());
+      for (ShapeAnimationOperations s : model.getShapeAnimations()) {
+        shapeList.addItem("Shape " + s.getObjectId());
       }
       shapeList.setSelectedIndex(0);
       setSelectedFrameIndex(0);
@@ -457,8 +458,8 @@ public class InteractiveView extends JFrame implements IInteractiveView, ActionL
     JPanel editKeyframePanel = getEditKeyframePanel();
     int shapeIndex = 0;
     List<String> shapeNameList = new ArrayList<>();
-    for (Shape shape : model.getShapes()) {
-      shapeNameList.add(shape.getId());
+    for (ShapeAnimationOperations shape : model.getShapeAnimations()) {
+      shapeNameList.add(shape.getObjectId());
     }
     if (shapeList != null && shapeList.getSelectedIndex() < shapeNameList.size()) {
       shapeIndex = shapeList.getSelectedIndex();
