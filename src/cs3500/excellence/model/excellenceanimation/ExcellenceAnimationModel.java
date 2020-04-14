@@ -52,7 +52,7 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
     return tempo;
   }
 
-  //new
+  @Override
   public void setTempo(int tempo) {
     this.tempo = tempo;
   }
@@ -145,6 +145,17 @@ public final class ExcellenceAnimationModel implements ExcellenceAnimationOperat
         lastTick = s.getLastTick();
     }
     return lastTick;
+  }
+
+  @Override
+  public void removeShape(String objectId) {
+    for(int i  = 0; i < shapeAnimations.size(); i++) {
+      if(shapeAnimations.get(i).getObjectId() == objectId) {
+        shapeAnimations.remove(i);
+        return;
+      }
+      throw new IllegalArgumentException("Shape id does not exist");
+    }
   }
 
   @Override

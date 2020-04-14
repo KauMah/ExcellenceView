@@ -2,7 +2,6 @@ package cs3500.animator.controller;
 
 import cs3500.animator.view.AnimationView;
 import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationModel;
-import cs3500.excellence.model.shapeanimation.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -29,7 +28,7 @@ public interface ControllerType extends ActionListener {
 
   void removeShape(String shapeId);
 
-  void setSpeed(String objectId);
+  void setSpeed(String speed);
 
   void setTick(int tick);
 

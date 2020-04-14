@@ -3,12 +3,15 @@ package cs3500.animator.controller;
 import cs3500.animator.view.AnimationView;
 import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationModel;
 import cs3500.excellence.model.shapeanimation.Shape;
+import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.List;
 
 public class NormalController implements ControllerType {
   ExcellenceAnimationModel model;
   AnimationView view;
+  private int tick;
 
   public NormalController(ExcellenceAnimationModel model, AnimationView view) {
     this.model = model;
@@ -30,7 +33,7 @@ public class NormalController implements ControllerType {
   }
 
   @Override
-  public double getSpeed() {
+  public int getSpeed() {
     return 0;
   }
 
@@ -46,27 +49,47 @@ public class NormalController implements ControllerType {
 
   @Override
   public void displayError(String text) {
-
+    throw new IllegalArgumentException(text);
   }
 
   @Override
   public void removeShape(String shapeId) {
-
+    model.removeShape(shapeId);
   }
 
   @Override
-  public void setSpeed(String objectId) {
-
+  public void setSpeed(String speed) {
+    model.setTempo(Integer.parseInt(speed));
   }
 
   @Override
   public void setTick(int tick) {
-
+    this.tick = tick;
   }
 
   @Override
   public int getTick() {
-    return 0;
+    return tick;
+  }
+
+  @Override
+  public void addKeyframe(String objectId, String color, String position, String width, String height, int tick) {
+
+  }
+
+  @Override
+  public void replaceKeyframe(String a, String b, String c, String d, String e, int f) {
+
+  }
+
+  @Override
+  public void removeKeyframe(String text, int tick) {
+
+  }
+
+  @Override
+  public void pause() {
+
   }
 
 

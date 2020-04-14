@@ -40,12 +40,20 @@ public interface ExcellenceAnimationOperations {
    */
   void animationAtCurrentTick(int tick);
 
+  /**
+   * get the dimensions of the canvas.
+   * @return List representing dimensions of the canvas.
+   */
   public List<Integer> getCanvasDimensions();
 
-
-
+  /**
+   * sets the dimensions of the canvas.
+   * @param x x dimension.
+   * @param y y dimension.
+   * @param width width of canvas.
+   * @param height height of canvas.
+   */
   void setCanvasDimensions(int x, int y, int width, int height);
-
 
   /**
    * Returns the keyframes for a given shape.
@@ -59,5 +67,9 @@ public interface ExcellenceAnimationOperations {
    * @return integer representing last tick.
    */
   int getLastTick();
+
+  void removeShape(String objectId);
+
+  void setTempo(int tempo);
 
 }

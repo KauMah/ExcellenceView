@@ -5,7 +5,6 @@ import cs3500.excellence.model.shapeanimation.Shape;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.List;
-import javax.naming.ldap.Control;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
