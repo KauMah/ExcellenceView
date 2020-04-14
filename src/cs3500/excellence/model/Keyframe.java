@@ -17,7 +17,7 @@ public class Keyframe implements IKeyframe {
 
   public Keyframe(int tick) {
     this.tick = tick;
-    //logiv to get height, color, width, position at this tick
+    //logic to get height, color, width, position at this tick
   }
 
   @Override
