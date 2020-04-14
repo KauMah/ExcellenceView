@@ -42,7 +42,10 @@ public interface ExcellenceAnimationOperations {
 
   public List<Integer> getCanvasDimensions();
 
-  public void setCanvasDimensions(int startingX, int startingY, int width, int height);
+
+
+  void setCanvasDimensions(int x, int y, int width, int height);
+
 
   /**
    * Returns the keyframes for a given shape.
@@ -56,4 +59,5 @@ public interface ExcellenceAnimationOperations {
    * @return integer representing last tick.
    */
   int getLastTick();
+
 }
