@@ -7,21 +7,26 @@ import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationOperations
  */
 public class AnimationViewFactory {
 
+  /**
+   * Creates the appropriate view given a type of view and supporting arguments
+   *
+   * @param type            the type of view as a string
+   * @param model           the model
+   * @param fileName        the name of the output file
+   * @param ticksPerSecond  the speed of the animation given in ticks per second (non-negative)
+   * @return
+   */
   public static IAnimationView createAnimationView(String type, ExcellenceAnimationOperations model,
       String fileName, int ticksPerSecond) {
     switch (type) {
       case "text":
         return new TextView(model, fileName);
-        break;
       case "svg":
         return new SVGView(model, fileName, ticksPerSecond);
-        break;
       case "visual":
         return new SwingView(model);
-        break;
       case "edit":
         return new InteractiveView(model, ticksPerSecond);
-        break;
       default:
         throw new IllegalArgumentException("View does not exist");
     }
