@@ -39,4 +39,6 @@ public interface ExcellenceAnimationOperations {
    */
 
   void animationAtCurrentTick(int tick);
+
+  
 }

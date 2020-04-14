@@ -172,6 +172,18 @@ public class ShapeAnimationModel implements ShapeAnimationOperations {
   }
 
   @Override
+  public boolean isInvisible() {
+    if(shape.getDimensions().getWidth() == 0 || shape.getDimensions().getHeight() == 0) {
+      return true;
+    }
+  }
+
+  @Override
+  public boolean isOval() {
+    return shape.getType().equals(shapeType.OVAL);
+  }
+
+  @Override
   public String toString() {
     if (shape == null) {
       throw new IllegalStateException("shape cannot be null");
