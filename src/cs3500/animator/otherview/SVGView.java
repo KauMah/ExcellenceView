@@ -1,12 +1,11 @@
 package cs3500.animator.otherview;
 
+import cs3500.excellence.model.animation.AnimationOperations;
+import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationOperations;
+import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-
-import cs3500.animator.model.Action;
-import cs3500.animator.model.IAnimatedShape;
-import cs3500.animator.model.ReadOnlyAnimationOperations;
 
 /**
  * A view that constructs an svg file based on an animation model.
@@ -14,7 +13,7 @@ import cs3500.animator.model.ReadOnlyAnimationOperations;
 public class SVGView implements TextualView {
   private int ticksPerSecond = 1;
   private String outputFileName = "default";
-  private final ReadOnlyAnimationOperations model;
+  private final ExcellenceAnimationOperations model;
   private final StringBuilder str = new StringBuilder();
 
   /**
@@ -23,7 +22,7 @@ public class SVGView implements TextualView {
    * @param outputFileName the name of the output file
    * @param ticksPerSecond ticks per second (speed)
    */
-  public SVGView(ReadOnlyAnimationOperations model, String outputFileName, int ticksPerSecond) {
+  public SVGView(ExcellenceAnimationOperations model, String outputFileName, int ticksPerSecond) {
 
     if (model == null) {
       throw new IllegalArgumentException("Model name cannot be null");
@@ -42,18 +41,19 @@ public class SVGView implements TextualView {
     str.append("<svg viewbox=\"" + model.getCanvasStartingX() + " " + model.getCanvasStartingY()
             + " " + model.getCanvasWidth() + " " + model.getCanvasHeight() + "\" version=\"1.1\"\n"
             + "     xmlns=\"http://www.w3.org/2000/svg\">" + "\n");
-    List<IAnimatedShape> shapes = model.getAnimatedShapes();
+    List<ShapeAnimationOperations> shapes = model.getShapeAnimations();
 
-    for (IAnimatedShape s : shapes) {
-      str.append("<" + s.getShapeAsString(this) + " id=\"" + s.getShapeAtStart().getId()
-              + "\" " + this.getXLabel(s) + "=\"" + s.getShapeAtStart().getPosition().getX() + "\" "
+    for (ShapeAnimationOperations s : shapes) {
+      AnimationOperations start = s.getAnimations().get(0);
+      str.append("<" + s.getShape().toString() + " id=\"" + s.getObjectId()
+              + "\" " + this.getXLabel(s) + "=\"" + s.getShapeAtStart().getX() + "\" "
               + this.getYLabel(s) + "=\""
-              + s.getShapeAtStart().getPosition().getY() + "\" " + this.getWidthLabel(s) + "=\""
+              + s.getShapeAtStart().getY() + "\" " + this.getWidthLabel(s) + "=\""
               + s.getShapeAtStart().getWidth() + "\" " + this.getHeightLabel(s) + "=\""
               + s.getShapeAtStart().getHeight()
-              + "\" fill=\"" + s.getShapeAtStart().getColor().toString() + "\" visibility=\"");
+              + "\" fill=\"" + s.getShapeAtStart().getStartColor().toString() + "\" visibility=\"");
       Boolean isHidden = false;
-      if (! s.getActions().isEmpty() && s.getActions().get(0).getStartTick() > 1) {
+      if (! s.getAnimations().isEmpty() && s.getAnimations().get(0).getStartTick() > 1) {
         isHidden = true;
         str.append("hidden");
       }
@@ -63,22 +63,22 @@ public class SVGView implements TextualView {
 
       str.append("\" >\n");
       if (isHidden) {
-        String fill = s.getActions().size() >= 1 ? "freeze" : "remove";
+        String fill = s.getAnimations().size() >= 1 ? "freeze" : "remove";
         str.append("\t<animate attributeType=\"xml\" begin=\"" + this.getMsFromTick(1)
-                + "ms\" dur=\"" + getMsFromTick(s.getActions().get(0).getStartTick() - 1)
+                + "ms\" dur=\"" + getMsFromTick(s.getAnimations().get(0).getStartTick() - 1)
                 + "ms\" attributeName=\"visibility\" from=\"hidden\" "
                 + "to=\"visible\" fill=\"" + fill + "\"/>\n");
       }
 
       boolean isLast = false;
 
-      for (int i = 0; i < s.getActions().size(); i++) {
-        if (i == s.getActions().size() - 1) {
+      for (int i = 0; i < s.getAnimations().size(); i++) {
+        if (i == s.getAnimations().size() - 1) {
           isLast = true;
         }
-        appendAnimationSpecificXML(s.getActions().get(i), s, isLast);
+        appendAnimationSpecificXML(s.getAnimations().get(i), s, isLast);
       }
-      str.append("</" + s.getShapeAsString(this) + ">\n");
+      str.append("</" + s.getAnimations() + ">\n");
     }
     str.append("</svg>");
     return str.toString();
@@ -89,8 +89,8 @@ public class SVGView implements TextualView {
    * @param s the shape
    * @return the label corresponding to the shape's x position
    */
-  private String getXLabel(IAnimatedShape s) {
-    return s.getShapeAsString(this) == this.getOvalAsString()
+  private String getXLabel(ShapeAnimationOperations s) {
+    return s.getShape().toString().equals(this.getOvalAsString())
             ? "cx" : "x";
   }
 
@@ -99,8 +99,8 @@ public class SVGView implements TextualView {
    * @param s the shape
    * @return the label corresponding to the shape's y position
    */
-  private String getYLabel(IAnimatedShape s) {
-    return s.getShapeAsString(this) == this.getOvalAsString()
+  private String getYLabel(ShapeAnimationOperations s) {
+    return s.getShape().toString().equals(this.getOvalAsString())
             ? "cy" : "y";
   }
 
@@ -109,8 +109,8 @@ public class SVGView implements TextualView {
    * @param s the shape
    * @return the label corresponding to the shape's width
    */
-  private String getWidthLabel(IAnimatedShape s) {
-    return s.getShapeAsString(this) == this.getOvalAsString()
+  private String getWidthLabel(ShapeAnimationOperations s) {
+    return s.getShape().toString().equals(this.getOvalAsString())
             ? "rx" : "width";
   }
 
@@ -119,8 +119,8 @@ public class SVGView implements TextualView {
    * @param s the shape
    * @return the label corresponding to the shape's height
    */
-  private String getHeightLabel(IAnimatedShape s) {
-    return s.getShapeAsString(this) == this.getOvalAsString()
+  private String getHeightLabel(ShapeAnimationOperations s) {
+    return s.getShape().toString().equals(this.getOvalAsString())
             ? "ry" : "height";
   }
 
@@ -167,7 +167,7 @@ public class SVGView implements TextualView {
    * @param action the action
    * @return a string representation of the duration in ms
    */
-  private String getDuration(Action action) {
+  private String getDuration(AnimationOperations action) {
     int tickDuration = action.getEndTick() - action.getStartTick();
     return getMsFromTick(tickDuration);
   }
@@ -178,9 +178,9 @@ public class SVGView implements TextualView {
    * @param s the animated shape
    * @param isLast whether the action is the last in the shape's list of actions
    */
-  private void appendAnimationSpecificXML(Action a, IAnimatedShape s, boolean isLast) {
+  private void appendAnimationSpecificXML(AnimationOperations a, ShapeAnimationOperations s, boolean isLast) {
     String fill;
-    if (isLast && s.getLastTick() == model.getLastTick()) {
+    if (isLast && s.getAnimations().get(s.getAnimations().size() - 1).getEndTick() == model.getLastTick()) {
       fill = "remove";
     }
     else {
@@ -194,35 +194,35 @@ public class SVGView implements TextualView {
               + "ms\" attributeName=\"fill\" from=\"" + a.getStartColor().toString()
               + "\" to=\"" + a.getEndColor().toString() + "\" fill=\"" + fill + "\"/>\n");
     }
-    if (a.getStartHeight() != a.getEndHeight()) {
+    if (a.getHeight() != a.getEndHeight()) {
       str.append("\t<animate attributeType=\"xml\" begin=\"" + getMsFromTick(a.getStartTick())
               + "ms\" dur=\"" + getDuration(a)
               + "ms\" attributeName=\"" + this.getHeightLabel(s) + "\" from=\""
-              + a.getStartHeight() + "\" to=\""
+              + a.getHeight() + "\" to=\""
               + a.getEndHeight() + "\" fill=\"" + fill + "\"/>\n");
     }
-    if (a.getStartWidth() != a.getEndWidth()) {
+    if (a.getWidth() != a.getEndWidth()) {
       str.append("\t<animate attributeType=\"xml\" begin=\"" + getMsFromTick(a.getStartTick())
               + "ms\" dur=\"" + getDuration(a)
               + "ms\" attributeName=\"" + this.getWidthLabel(s) + "\" from=\""
-              + a.getStartWidth() + "\" to=\""
+              + a.getWidth() + "\" to=\""
               + a.getEndWidth() + "\" fill=\"" + fill + "\"/>\n");
     }
-    if (a.getStartPos().getX() != a.getEndPos().getX()) {
+    if (a.getX() != a.getEndX()) {
       str.append("\t<animate attributeType=\"xml\" begin=\"" + getMsFromTick(a.getStartTick())
               + "ms\" dur=\"" + getDuration(a)
               + "ms\" attributeName=\"" + this.getXLabel(s) + "\" from=\""
-              + a.getStartPos().getX() + "\" to=\""
-              + a.getEndPos().getX() + "\" fill=\"" + fill + "\"/>\n");
+              + a.getX() + "\" to=\""
+              + a.getEndX() + "\" fill=\"" + fill + "\"/>\n");
     }
-    if (a.getStartPos().getY() != a.getEndPos().getY()) {
+    if (a.getY() != a.getEndY()) {
       str.append("\t<animate attributeType=\"xml\" begin=\"" + getMsFromTick(a.getStartTick())
               + "ms\" dur=\"" + getDuration(a)
               + "ms\" attributeName=\"" + this.getYLabel(s) + "\" from=\""
-              + a.getStartPos().getY() + "\" to=\""
-              + a.getEndPos().getY() + "\" fill=\"" + fill + "\"/>\n");
+              + a.getY() + "\" to=\""
+              + a.getEndY() + "\" fill=\"" + fill + "\"/>\n");
     }
-    if (isLast && s.getLastTick() < model.getLastTick()) {
+    if (isLast && s.getAnimations().get(s.getAnimations().size() - 1).getEndTick() < model.getLastTick()) {
       str.append("\t<animate attributeType=\"xml\" begin=\"" + this.getMsFromTick(a.getEndTick())
               + "ms\" dur=\"0.1ms\" attributeName=\"visibility\" from=\"visible\" "
               + "to=\"hidden\" fill=\"freeze\"/>\n");

@@ -1,5 +1,6 @@
 package cs3500.excellence.model.excellenceanimation;
 
+import cs3500.excellence.model.IKeyframe;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationModel;
 import cs3500.excellence.model.shapeanimation.ShapeAnimationOperations;
 import java.util.List;
@@ -37,12 +38,13 @@ public interface ExcellenceAnimationOperations {
    *
    * @param tick the current tick of the animation.
    */
-
   void animationAtCurrentTick(int tick);
 
   public List<Integer> getCanvasDimensions();
 
   public void setCanvasDimensions();
-
   
+  List <IKeyframe> getKeyframes(String shape);
+
+  int getLastTick();
 }
