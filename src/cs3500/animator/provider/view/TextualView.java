@@ -1,4 +1,4 @@
-package cs3500.animator.otherview;
+package cs3500.animator.provider.view;
 
 /**
  * Template for the textual view - a textual representation of the animation. Will be use for both

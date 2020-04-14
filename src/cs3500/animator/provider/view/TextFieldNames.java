@@ -1,4 +1,4 @@
-package cs3500.animator.otherview;
+package cs3500.animator.provider.view;
 
 /**
  * Enums representing the possible text fields names in the interactive animation view.

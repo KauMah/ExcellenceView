@@ -1,4 +1,4 @@
-package cs3500.animator.otherview;
+package cs3500.animator.provider.view;
 
 import cs3500.excellence.model.excellenceanimation.ExcellenceAnimationOperations;
 

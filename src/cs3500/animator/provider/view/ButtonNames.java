@@ -1,4 +1,4 @@
-package cs3500.animator.otherview;
+package cs3500.animator.provider.view;
 
 /**
  * Enums for all buttons names used in the interactive animation view.

@@ -1,4 +1,4 @@
-package cs3500.animator.otherview;
+package cs3500.animator.provider.view;
 
 /**
  * Template for the visual view - a graphical representation of the animation.
